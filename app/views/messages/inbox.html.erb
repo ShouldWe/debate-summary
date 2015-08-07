@@ -1,0 +1,21 @@
+<section class="messageContainer" data-pjax-container="true">
+  <header>
+    <h2>Notifications</h2>
+    <p>Displaying <%= @messages.size %> out of <%= pluralize @total_message_size, "notification", "notifications" %>.</p>
+    <% unread = @messages.map(&:read).include?(false) ? {} : {disabled: true} %>
+    <!--<%= link_to "Mark all Read", read_mailbox_path, {method: :put, class: "btn btn-blue"}.merge!(unread) %>-->
+  </header>
+  
+  <ul class="basic">
+    <% @messages.each do |message| %>
+      <li class="<%= message.status %>">
+        <span class="title"><%= link_to message.title, message %>
+        </span>
+        <span class="timestamp">
+          <%= time_tag message.created_at, class: "timeago" %>
+        </span>
+        <div class="clearfix"></div>
+      </li>
+    <% end %>
+  </ul>
+</section>

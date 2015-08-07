@@ -1,0 +1,16 @@
+<div class="table_tools">
+	<ul class="scopes table_tools_segmented_control" id="settingsSorter">
+		<li class="scope">
+			<a href="#" class="table_tools_button" data-category="All">All</a>
+		</li>
+		<% @sorters.each do |sort| %>
+			<li class="scope">
+				<a href="#" class="table_tools_button" data-category="<%= sort %>">
+					<%= sort %>
+				</a>
+			</li>
+		<% end %>
+	</ul>
+</div>
+
+<p>DISABLED - Feature too irreliable, request a developer to make setting's changes.</p>

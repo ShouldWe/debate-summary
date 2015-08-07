@@ -1,0 +1,90 @@
+<% content_for(:title, t(:default_title, scope: [:meta])) %>
+<% content_for(:meta) do %>
+  <%= tag(:meta, name: 'description',        content: t(:description, scope: [:meta])) %>
+  <%= tag(:meta, name: 'keywords',           content: t(:keywords, scope: [:meta])) %>
+  <%= tag(:meta, property: 'twitter:card',        content: 'summary') %>
+  <%= tag(:meta, property: 'twitter:title',       content: t(:default_title, scope: [:meta])) %>
+  <%= tag(:meta, property: 'twitter:title',       content: t(:description, scope: [:meta])) %>
+  <%= tag(:meta, property: 'twitter:image',       content: full_url(image_path('debate-summary-vertical@2x.png'))) %>
+  <%= tag(:meta, property: 'og:type',        content: 'company') %>
+  <%= tag(:meta, property: 'og:title',       content: t(:default_title, scope: [:meta])) %>
+  <%= tag(:meta, property: 'og:site_name',   content: t(:default_title, scope: [:meta])) %>
+  <%= tag(:meta, property: 'og:description', content: t(:description, scope: [:meta])) %>
+  <%= tag(:meta, property: 'og:url',         content: full_url('/')) %>
+  <%= tag(:meta, property: 'og:image',       content: full_url(image_path('debate-summary-vertical@2x.png'))) %>
+<% end %>
+
+<div class="masterhead" role="main">
+  <div class="container">
+    <% unless signed_in? %>
+      <div class="account">
+        <%= link_to "Log In / Sign Up", new_user_session_url, class: 'btn btn-blue' %>
+      </div>
+    <% end %>
+    <div class="homepage-help-us">
+      <%= simple_format(markdown(t(:help, scope: 'home'))) %>
+    </div>
+    <span class="speach-bubbles"></span>
+    <div class="home-logo"></div>
+
+    <%=simple_format(t(:tagline, scope: 'meta'), class: 'lead') %>
+
+    <ul class="points">
+      <li><%= markdown(t(:search, scope: 'home.points')) %></li>
+      <li><%= markdown(t(:improve, scope: 'home.points')) %></li>
+      <li><%= markdown(t(:create, scope: 'home.points')) %></li>
+    </ul>
+
+
+    <div class="search">
+      <form action="/search" method="GET" role="search" accept-charset="UTF-8">
+        <div class="form-group">
+          <label>Search for:</label>
+          <span class="form-control-wrapper">
+            <input type="search" name="search" placeholder="Should the UK leave the European Union" autocomplete="off" id="searchHome">
+            <span class="fa fa-search"></span>
+            <div id="homeSearchDropdown" class="search-results"></div>
+          </span>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="join-mailing-list">
+      <%= link_to(t(:mailing_list, scope: 'home'), '/about') %>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="content">
+  <div class="container">
+    <div class="card trending-topics">
+      <div class="card-header"><%=t :topics, scope: 'home.trending' %></div>
+      <ol class="card-items">
+        <% @trending_topics.each do |topic| %>
+          <li><%= link_to topic.title, topic %></li>
+        <% end %>
+      </ol>
+    </div>
+
+    <div class="card trending-tags">
+      <div class="card-header"><%=t :tags, scope: 'home.trending' %></div>
+      <ol class="card-items">
+        <% @trending_tags.each do |tag| %>
+          <li><%= link_to tag.name, tag_path(tag.name) %></li>
+        <% end %>
+      </ol>
+    </div>
+
+    <div class="card directory">
+      <div class="card-items directory-group-left">
+        <%= render partial: 'directory_group', collection: @left_entries %>
+      </div>
+      <div class="card-items directory-group-right">
+        <%= render partial: 'directory_group', collection: @right_entries %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<% if items.empty? %>
+  <b>No results</b>
+<% else %>
+  <table>
+  <tr>
+    <th>Count</th>
+    <th>Url</th>
+    <th>Used in</th>
+    <th>Mime Type</th>
+    <th>Visits</th>
+  </tr>
+  <% items.each do |link| %>
+    <tr>
+      <td><%= link.link_occurence %></td>
+      <td><%= link.short_link %></td>
+      <td><%= link_to link.issue.title, link.issue %></td>
+      <td><%= link.mime_type %></td>
+      <td><%= link.total_visits %></td>
+    </tr>
+  <% end %>
+  </table>
+  <%= paginate items %>
+<% end %>

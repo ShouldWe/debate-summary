@@ -1,0 +1,21 @@
+<% title =  @tags.collect{|t| "##{t}" }.to_sentence(two_words_connector: ' & ') %>
+<% content_for(:title, title) %>
+<% content_for(:page_header) do %>
+<section id="tagsShowContainer" class="messageContainer">
+  <header>
+    <h1><%= title %></h1>
+  </header>
+<% end %>
+
+<div class="taglinks">
+  <h3>Pages which are tagged with: <%= title %></h3>
+
+  <% @issues.each do |issue| %>
+    <div class="tagshowrow">
+      <%= image_tag issue.image, width: 70, height: 50, alt: issue.title, style: "float:left;" %>
+      <p><%= link_to issue.title, issue_path(issue) %></p>
+    </div>
+  <% end %>
+  <div class="tagshowrowbottom"></div>
+</div>
+</section>

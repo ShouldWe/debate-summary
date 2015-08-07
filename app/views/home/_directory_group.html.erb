@@ -1,0 +1,11 @@
+<div class="directory-group">
+  <div class="directory-group-title"><%= directory_group.tags  %> (<%= link_to "#{directory_group.tag_count}", '#', class: 'directory-show-more' %>)</div>
+  <ol class="directory-group-items">
+    <% directory_group.issues.each_with_index do |topic,index| %>
+      <li class="<%= 'hidden-directory-entry' if index > 1%>" itemscope itemtype="http://schema.org/Article">
+        <%= link_to topic.title, topic, itemprop: 'name' %>
+      </li>
+    <% end %>
+    <li class="hidden-directory-entry"><%= link_to("More...", tag_path(directory_group.tags.gsub(' & ',','))) %></li>
+  </ol>
+</div>

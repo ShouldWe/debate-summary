@@ -1,0 +1,21 @@
+<!-- content -->
+<div id="content">
+  <div class="c1">
+
+    <%= form_for(@issue, :html => { :class => 'edit-form', :multipart => true, remote: true }) do |f| %>
+      <%= render 'form', :form => f %>
+    <% end %>
+  </div>
+</div>
+
+<% if current_user.banned_globally? %>
+  <div id="disable_create" style="display:none;">
+    <p>
+      You are not allowed to create new issues because of
+      <%= link_to "the change you've made", activities.first %>
+      has been flagged and you were issued a site-wide block that will be lifted on <%= @issue.user_ban_will_be_lifted_on(current_user).strftime("%d %B %Y") %>.</p>
+
+    <%= link_to 'Back to home page', @issue, class: 'btn' %>
+
+  </div>
+<% end %>

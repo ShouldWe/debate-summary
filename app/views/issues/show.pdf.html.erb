@@ -1,0 +1,30 @@
+<div>
+  <h2><%= @issue.title %></h2>
+</div>
+
+<div class="panel" layout="row">
+  <div flex style="min-width:210px;">
+    <%= wicked_pdf_image_tag @issue.image.normal.url, width: 200%>
+  </div>
+  <div flex>
+    <div class="statement">
+      <div class="statement-body">
+        <%= @issue.context.try(:html_safe) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% ['detail_fors', 'detail_againsts', 'detail_alternatives', 'detail_relevants'].each do |section|%>
+  <div class="panel">
+    <div class="panel-heading">
+      <h4 class="panel-title"><%= t(section, scope: 'activerecord.attributes.issue') %></h4>
+    </div>
+    <% instance_variable_get("@#{section}").each do |detail| %>
+      <div class="statement">
+        <div class="statement-title"><%= detail.title %></div>
+        <div class="statement-body"><%= detail.body.try(:html_safe) %></div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,41 @@
+<div id="header" role="navigation">
+  <div class="header-holder">
+    <span class="logo"><a href="/">Debate Summary</a></span>
+    <span class="arrow">&nbsp;</span>
+    <div class="user-box">
+      <% if user_signed_in? %>
+        <span class="ico">
+          <%= image_tag current_user.avatar.thumb.url, width: 28, height: 28 %>
+        </span>
+        <span id="user-menu-dropdown">
+          <strong><%= link_to current_user.trimmed_name, current_user %> <%= unread_notifications.html_safe %></strong>
+        </span>
+        <div id="user-menu">
+          <ul>
+            <li><%= link_to t('users.account-link'), edit_profile_path %></li>
+            <% if current_user.admin? %>
+              <li><%= link_to "Control Panel", "/controlpanel", target: "_blank" %></li>
+            <% end %>
+            <li><%= link_to "Create new issue", new_issue_path %></li>
+            <% if current_user.is_monitor? %>
+              <li><%= link_to 'Vote on flagged edits', rule_break_report_votes_path %></li>
+            <% end %>
+            <li><%= link_to t('users.sign-out'), destroy_user_session_path, :method => :delete  %></li>
+          </ul>
+        </div>
+      <% else %>
+        <%= link_to t('users.sign-in-up'), new_user_session_url, id: "loginLink", class: "btn btn-blue"%>
+    <% end %>
+  </div>
+  <% unless (['home','external_link'].include?  params[:controller])%>
+    <%= form_tag "/search", method: :get, class: "search-form", role: 'search' do %>
+      <fieldset>
+        <input type="text" placeholder="Search..." name="search" autocomplete="off">
+        <input type="submit" value="submit">
+      </fieldset>
+    <% end %>
+    <div id="searchContainer"><div id="searchDropdown"></div></div>
+  <% else %>
+  <% end %>
+</div>
+</div>

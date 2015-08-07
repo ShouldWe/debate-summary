@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <%= stylesheet_link_tag 'email' %>
+  </head>
+  <body>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <table class='container'>
+              <tbody>
+                <tr>
+                  <td class='header'>
+                    <span class="logo"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class='body'>
+                    <p>Hi <%= @user.name %>,</p>
+                    <%= yield %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="footer">This message was sent to <%= mail_to(@user.email, @user.email) %>. If you do not want to
+            receive these emails from Debate Summary in the future, please update your 
+            email <%= link_to('notification settings', edit_user_registration_url(@user)) %> in your user account.<br/>
+            <br/>
+            PolicyWiki Educational Foundation, 7 Chancellors Wharf, Crisp Road, London, UK, W6 9RT</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

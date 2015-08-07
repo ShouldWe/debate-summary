@@ -1,0 +1,24 @@
+  <% if @link.embeddable %>
+      <iframe src="<%= @link.url.gsub('https://','//') %>" style="position:absolute; left: 0px; top:0px; width:100%; height:100%;" height="100%" width="100%"></iframe>
+  <% else %>
+    <div style="text-align: center">
+
+      <%= link_to (image_tag @link.issue.image.normal.url, width: 200, height: 140, alt: @link.issue.title, id: 'share-image'), @link.issue.image.url %>
+
+      <%= hidden_field_tag "detail_target_href", @link.url %>
+
+      <div class="statement_text">
+        "<%= @link.text(params[:id]) %>"
+      </div>
+
+      <div id="sidesocial" style="width: 100%; padding: 0">
+        <%= render partial: '/layouts/social' %>
+      </div>
+
+      <a class="btn btn-info" href="<%= @link.url %>" target='_blank'>Show evidence</a>
+      <% if (400..599).include? @link.status %>
+        <br/>
+        <i>This link appears to be broken</i>
+      <% end %>
+  </div>
+  <% end %>

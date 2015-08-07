@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title><%= content_for?(:title) ? yield(:title) : "Debate Summary" %></title>
+  <link href="/images/favicon.ico" rel="shortcut icon">
+  <!--[if lt IE 9]><script type="text/javascript" src="js/respond.min.js"></script><![endif]-->
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <style>
+.linked-document-download-prompt {
+  position: absolute;
+  display: block;
+  top: 50%;
+  width: 100%;
+  margin-top: -120px;
+  text-align: center;
+}
+  </style>
+  <%= yield :head %>
+</head>
+<!-- <body> -->
+<body class="inner-page">
+  <div id="wrapper">
+    <%= render 'layouts/header' %>
+
+  <h1><%= @content_type %></h1>
+  <% if @content_type.match('text') %>
+    <iframe id="framed" src="<%= @link %>" scrolling="yes"></iframe>
+  <% else %>
+    <div class="linked-document-download-prompt">
+      <h3>Would you like to download this file?</h3>
+      <div class="well">
+        <pre><%= @link %></pre>
+      </div>
+      <%= link_to 'Download', @link, {class: 'btn btn-primary'} %>
+    </div>
+  <% end %>
+  </div>
+
+  <%= javascript_include_tag "application" %>
+  <%= yield :foot %>
+</body>
+</html>

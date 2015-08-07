@@ -1,0 +1,130 @@
+#
+# Debate Summary - Croudsource arguments and debates
+# Copyright (C) 2015 Policy Wiki Educational Foundation LTD <hello@Debate Summary.org>
+#
+# This file is part of Debate Summary.
+#
+# Debate Summary is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Debate Summary is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Debate Summary.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  meta:
+    title: "Debate Summary"
+    tagline: 'Debate Summary is a crowdsourced guide to the big policy questions of the day. Every sentence on a Debate Summary page is linked to evidence, ensuring you get perspectives from all sides, in one place. '
+    keywords: 'public policy, debate, evidence'
+    default_title: 'Debate Summary - From all sides, in one place'
+    description: "Debate Summary is a new online guide to the causes and consequences of the policies which affect our lives."
+  time:
+    formats:
+      default: "%Y/%m/%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+      edited: "%e %B at %l:%M%p"
+  helpers:
+    label:
+      detail_fors: "yessses"
+  activerecord:
+    attributes:
+      issue:
+        detail_fors: '"Yes" arguments:'
+        detail_againsts: '"No" arguments:'
+        detail_alternatives: 'Leading Voices'
+        detail_data: 'Notable Resources'
+        detail_relevants: 'Notable Resources'
+    errors:
+      models:
+        issue:
+          attributes:
+            title:
+              invalid: 'needs to be formatted starting with "Should" and ending with a Question-mark.'
+            context:
+              missing_hyper_link_content: 'text must include evidence for all statements'
+        detail:
+          attributes:
+            body:
+              too_long: 'is too long (maximum is %{count} words)'
+              missing_hyper_link_content: 'text must include evidence for all statements'
+  users:
+    account-link: "My Account"
+    sign-up: "Sign up"
+    sign-in-up: "Sign in / Sign up"
+    sign-in: "Sign in"
+    sign-out: "Log Out"
+  site:
+    copyright-link_html: "&copy; Debate Summary"
+    short-licence: "You may use all information on this page freely and without attribution."
+    welcome_message: "Welcome! This looks like your first visit to Debate Summary, a crowd-sourced summary of public policy debates. Enjoy looking around!\n\nBy the way, we use cookies to improve your experience."
+    generated: "Page generated:"
+  home:
+    trending:
+      topics: "Trending Topics"
+      tags: "Trending Tags"
+    points:
+      search: "**Search** (below) for topics you care about."
+      improve: "**Improve** pages by adding new evidence and arguments: click the “edit this page” button at the top of each page."
+      create: "**Create** a new page: click [here](/issues/new) to start."
+    mailing_list: "Find out more about Debate Summary and sign up for our mailing list."
+    help: "Help us spread the word about Debate Summary\n[find out how](/help-us)"
+  issues:
+    sidebar:
+      headings:
+        quality: Page Quality
+        tags: Tags
+        external-links: Elsewhere online
+        internal-links: On Debate Summary
+        admin: Admin
+      report-quality: Report content
+    popup-sidebar:
+      headings:
+        supporting-evidence: "Supporting evidence:"
+    why_not_add_info: "Why not add some information here?"
+    edit-this-page-link: "Edit this page"
+    form:
+      links:
+        heading: "On Debate Summary:"
+        add-link: "Add new link"
+      page-title-label: "Page Title:"
+      page-title-help: "Enter a title for this Policy, try and explain the essence of the situation."
+      add-source-label: "Add source"
+      add-source-help: "Select some text from the text box, then click this to attribute it to a hyperlink."
+      detail-and-context-label: "Issue detail and context:"
+      argument-heading-placeholder: "Insert argument heading"
+      tag_list-placeholder: "Some, tags, separated, by, commas..."
+      for-help-title: "For."
+      for-help-title-description: "Make a statement in favour of this Policy"
+      for-help-description: "Enter the argument which re-inforces the detail of this Policy"
+      for-help-thinkabout: "if you support your argument by highlighting it, clicking Add Source and entering a reference, you will make a much stronger point."
+      against-help-title: "Against."
+      against-help-title-description: "Make a statement against this Policy"
+      against-help-description: "Enter an argument or statement which counters the detail of this Policy"
+      against-help-thinkabout: "if you support your argument by highlighting it, clicking 'Add source' and entering a reference, you'll make a much stronger point."
+      relevant-help-title: "Notable Resources."
+      relevant-help-title-description: "Add a title to additional, relevant data to ensure people can see quickly what it contains."
+      relevant-help-description: "This section can be used for backing up your points with relevant data that might not be directly cited in the Policy or in any of the arguments surrounding it."
+      relevant-help-thinkabout: "What is the underlying reality of the situation? Possibly information that might be less accessible, but vital to an informed understanding of the situation."
+      alternative-help-title: "Leading Voices."
+      alternative-help-title-description: "Sum up the perspective, trying to capture the essence of it in a few words."
+      alternative-help-description: "What other ways of looking at this issue might there be?"
+      alternative-help-thinkabout: ""
+      tag-help-title: "Tags."
+      tag-help-title-description: "Tags help people find content by summing up its context in a few words or short phrases."
+      tag-help-thinkabout: "try and distil the essence of this Policy into a very few words"
+
+  login:
+    omniauth_error: "Sorry, there was an error authorising your account. Perhaps you did not approve authorisation?"
+    omniauth_error_unknown: "Something went wrong processing your log in, please try again."
+  url:
+    broken: "Sorry the link is broken"

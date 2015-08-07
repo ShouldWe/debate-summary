@@ -1,0 +1,227 @@
+/*
+ * Debate Summary - Croudsource arguments and debates
+ * Copyright (C) 2015 Policy Wiki Educational Foundation LTD <hello@shouldwe.org>
+ *
+ * This file is part of Debate Summary.
+ *
+ * Debate Summary is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Debate Summary is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Debate Summary.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+.clearfix {
+  *zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+body{
+  background-color: #eff1f0;
+}
+.area-boxes{
+  min-height: 160px;
+  position: relative;
+  margin-bottom: 20px;
+  -webkit-transition-property: height;
+  -moz-transition-property: height;
+  -ms-transition-property: height;
+  transition-property: height;
+  -moz-transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+.area-box{
+  position:  relative;
+  -webkit-transition-property: left right;
+  -moz-transition-property: left right;
+  transition-property: left right;
+  -moz-transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  z-index: 2;
+}
+.area-container{
+  border: 1px solid #f0f0f0;
+  background-color: white;
+  -webkit-transition-property: -webkit-box-shadow;
+  -moz-transition-property: -moz-box-shadow;
+  -ms-transition-property: -moz-box-shadow;
+  transition-property: box-shadow;
+  -moz-transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -moz-box-shadow: 0 1px 2px rgb(152, 152, 152);
+  -webkit-box-shadow: 0 1px 2px rgb(152, 152, 152);
+  box-shadow: 0 1px 2px rgb(152, 152, 152);
+}
+.area-header{
+  padding: 10px 15px 10px 41px;
+  color: #4a4c53;
+  font: 24px/28px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+.area-content{
+  position: relative;
+  background-color: #f7f6f6;
+  border-top: 1px solid #e3e2e2;
+  border-bottom: 1px solid #e3e2e2;
+  padding: 10px 15px;
+}
+.area-footer{
+  padding: 10px 15px;
+}
+.area-arrow{
+  position: absolute;
+  top: 18px;
+  width: 10px;
+  height: 10px;
+  background-position: center center;
+  cursor: pointer;
+
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -ms-transition-property: -ms-transform;
+  transition-property: transform;
+  -moz-transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+.area-content .area-arrow{
+  background-image: url('arrow-grey.svg');
+}
+.no-svg .area-content .area-arrow{
+  background-image: url('arrow-grey.png');
+}
+.area-content.area-error .area-arrow{
+  background-image: url('arrow-red.svg');
+}
+.no-svg .area-content.area-error .area-arrow{
+  background-image: url('arrow-red.png');
+}
+.area-box.open .area-content.open .area-arrow{
+  background-color: #f7f6f6;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  margin-left: -3px;
+  margin-top: -3px;
+}
+.no-csstransforms .area-box.open .area-content.open .area-arrow{
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=-1.8369701987210297e-16 M12=-1, M21=1, M22=-1.8369701987210297e-16, SizingMethod='auto expand')";
+  filter: progid:DXImageTransform.Microsoft.Matrix(M11=-1.8369701987210297e-16, M12=-1, M21=1, M22=-1.8369701987210297e-16, SizingMethod='auto expand');
+}
+.area-holder{
+  margin-left: 20px;
+}
+.area-holder .clearfix{
+  max-height: 0px;
+  overflow: hidden;
+  -webkit-transition-property: max-height;
+  -moz-transition-property: max-height;
+  transition-property: max-height;
+  -moz-transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+.area-content.open .area-holder .clearfix{
+  max-height: 220px;
+}
+.area-title{
+  margin-right: 10px;
+}
+.area-title-input{
+  width: 100%;
+  display: block;
+}
+
+.area-contenteditable{
+  padding: 10px;
+  height: 150px;
+  overflow: auto;
+  border: 1px solid #ccc;
+  color: red;
+  margin-top: 10px;
+  background-color: white;
+}
+.area-contenteditable:focus{
+  outline:none;
+  border: 1px solid #75b9f0;
+  -moz-box-shadow: 0 0 8px #75b9f0;
+  -webkit-box-shadow: 0 0 8px #75b9f0;
+  box-shadow: 0 0 8px #75b9f0;
+}
+
+.area-contenteditable a{
+  color: #111;
+  text-decoration: underline;
+}
+
+.area-counter{
+  font-size: 13px;
+  margin-top: 3px;
+}
+.area-box.alpha{
+  left: 0;
+  right: 50%;
+  position: absolute;
+}
+.area-box.alpha .area-container{
+  margin-right: 5px;
+}
+.area-box.omega{
+  left: 50%;
+  right: 0;
+  position: absolute;
+}
+.area-box.omega .area-container{
+  margin-left: 5px;
+}
+.area-box.open{
+  z-index: 999;
+
+}
+.area-box.alpha.open{
+  left: 0;
+  right: 25%;
+}
+.area-box.alpha.open .area-container{
+  -moz-box-shadow: 4px 4px 8px rgb(152, 152, 152);
+  -webkit-box-shadow: 4px 4px 8px rgb(152, 152, 152);
+  box-shadow: 4px 4px 8px rgb(152, 152, 152);
+}
+.area-box.omega.open{
+  right: 0;
+  left: 25%;
+}
+.area-box.omega.open .area-container{
+  -moz-box-shadow: -4px 4px 8px rgb(152, 152, 152);
+  -webkit-box-shadow: -4px 4px 8px rgb(152, 152, 152);
+  box-shadow: -4px 4px 8px rgb(152, 152, 152);
+}
+
+.area-box .add_source{
+  margin: 0;
+}

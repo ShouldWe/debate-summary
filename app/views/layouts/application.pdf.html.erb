@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <%= content_tag(:title, content_for?(:title) ? yield(:title) + ' - Debate Summary' : "Debate Summary") %>
+  <%= wicked_pdf_stylesheet_link_tag('pdf') %>
+</head>
+<body>
+  <div class="header" layout="row" layout-align="start center">
+    <div flex>
+      <span class="logo"></span>
+    </div>
+    <div flex class="issue-url">
+      <%= link_to(issue_url, issue_url) %>
+    </div>
+  </div>
+  <%= yield %>
+  <div class="footer">
+    <p>
+      <%=t 'site.generated' %> <%= Time.zone.now.to_s(:long) %>
+    </p>
+    <p>
+      <%= t('site.copyright-link_html') %> <%= Time.zone.now.year %>
+      - <%= t('site.short-licence') %>
+    </p>
+  </div>
+</body>
+</html>

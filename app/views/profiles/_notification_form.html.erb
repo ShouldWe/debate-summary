@@ -1,0 +1,1 @@
+<li><%= form_for notification_form, remote: true, html: {class: "auto_submit"} do |f| %>Send me <%= f.select :preference, NotificationSubscription::PREFERENCES, {}, class: "chosen", id: "preference_#{notification_form_counter}" %> notifications on <%= link_to notification_form.issue.title, notification_form.issue %>.<% end %></li>

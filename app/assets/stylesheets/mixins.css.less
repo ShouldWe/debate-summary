@@ -1,0 +1,102 @@
+.rounded-corners (@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+}
+
+.slide-block-margin {
+	margin: 0 36px 10px 0;
+}
+
+.basic-shadow {
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.advanced-shadow(@distance: 0, @radius: 200px) {
+  -moz-box-shadow: @distance @distance @radius rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: @distance @distance @radius rgba(0, 0, 0, 0.7);
+  box-shadow: @distance @distance @radius rgba(0, 0, 0, 0.7);
+}
+
+.text-shadow(@distance: 2px, @color: #cccccc) {
+  text-shadow: @distance @distance @distance @color;
+}
+
+.button-gradient {
+  background: #00b7ea;
+  background: -moz-linear-gradient(top,  #00b7ea 0%, #009ec3 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00b7ea), color-stop(100%,#009ec3));
+  background: -webkit-linear-gradient(top,  #00b7ea 0%,#009ec3 100%);
+  background: -o-linear-gradient(top,  #00b7ea 0%,#009ec3 100%);
+  background: -ms-linear-gradient(top,  #00b7ea 0%,#009ec3 100%);
+  background: linear-gradient(to bottom,  #00b7ea 0%,#009ec3 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b7ea', endColorstr='#009ec3',GradientType=0 );
+}
+
+.grey-bottom-border{
+  border-bottom:1px solid @lightGrey;
+}
+
+/*Colours:*/
+@darkGrey: #342334;
+@charcoal: #4a4c53;
+@lightBlue: #1093C7;
+@backgroundGrey: #EDEEEE;
+@lightGrey: #EDEDED;
+@white: #FFFFFF;
+@green: #7DAD7D;
+@footerGrey: #8A8A8A;
+
+.darkGrey{color:@darkGrey;}
+.charcoal{color:@charcoal;}
+.lightBlue{color:@lightBlue;}
+
+/*Measurements:*/
+@footerHeight: 48px;
+
+.activeStatementLightBlue {
+  color: @lightBlue !important;
+}
+
+/*.edit-field-style {
+  background: @backgroundGrey;
+  .rounded-corners(5px);
+  -webkit-box-shadow: inset 1px 1px 5px 1px #999999;
+  box-shadow: inset 1px 1px 5px 1px #999999;
+}*/
+
+.edit-field-style {
+	background: @white;
+	border: 1px solid #CCCCCC;
+}
+
+.search-results-list {
+  text-align: left;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  li {
+    border-bottom: 1px solid @lightGrey;
+    &:last-child {
+      border-bottom: 0;
+    }
+    &:hover, &.focus {
+      a {color: @white !important;}
+      background-color: @lightBlue;
+    }
+    img {
+      width: 20px;
+      height: 20px;
+      text-align: left;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    a {
+      display:block;
+      padding: 5px 10px;
+      vertical-align: middle;
+      font-size: 14px;
+    }
+  }
+}

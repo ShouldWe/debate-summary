@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title><%= content_for?(:title) ? yield(:title) : "Debate Summary" %></title>
+  <link href="/images/favicon.ico" rel="shortcut icon">
+  <!--[if lt IE 7]><script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js"></script><![endif]-->
+  <!--[if lt IE 8]><script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script><![endif]-->
+  <!--[if lt IE 9]><script type="text/javascript" src="/js/respond.min.js"></script><![endif]-->
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= yield :head %>
+</head>
+<!-- <body> -->
+<body class="inner-page">
+  <div id="wrapper">
+    <%= render 'layouts/header' %>
+
+    <div id="main">
+      <div class="main-holder">
+        <!-- intro -->
+        <div class="intro">
+          <% if notice %><p class="notice"><%= notice %></p><% end %>
+          <% if alert %><p class="alert"><%= alert %></p><% end %>
+          <%= yield :page_header %>
+        </div>
+        <!-- section -->
+        <div class="section">
+          <%= yield %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="templates" style="display:none">
+    <%= yield :templates %>
+  </div>
+
+  <%= javascript_include_tag "application" %>
+  <%= yield :foot %>
+</body>
+</html>

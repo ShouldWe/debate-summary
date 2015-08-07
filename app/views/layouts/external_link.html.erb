@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html class="no-js" prefix="og: http://ogp.me/ns#" lang="en-gb">
+  <head>
+    <%= render partial: '/layouts/core_head', locals: { stylesheet: 'application' } %>
+  </head>
+  <body class="inner-page" data-sidebar-locked="false">
+    <div id="wrapper">
+      <%= render 'layouts/header' %>
+      <!-- main -->
+      <div id="main" role="main">
+        <div class="main-holder">
+          <!-- intro -->
+          <% if content_for?(:page_header) || notice || alert %>
+            <div class="intro">
+              <%= content_tag :p, notice, class: "notice" if notice %>
+              <%= content_tag :p, alert, class: "alert" if alert %>
+              <%= yield :page_header %>
+            </div>
+          <% end %>
+          <!-- section -->
+          <div class="section">
+
+            <%= yield %>
+
+            <!-- sidebar -->
+            <div id="sidebar" role="complementary">
+              <%= yield :sidebar %>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="footerClear"></div>
+    </div>
+
+    <div id="templates" style="display:none">
+      <%= yield :templates %>
+    </div>
+
+    <%= render 'layouts/footer' %>
+    <%= javascript_include_tag "application", :async => true %>
+    <%= yield :foot %>
+  </body>
+</html>

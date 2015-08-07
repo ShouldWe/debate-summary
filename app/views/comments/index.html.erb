@@ -1,0 +1,23 @@
+<section id="comments">
+  <h2>Comments on '<%= @issue.title %>'</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="span2">Title</th>
+        <th class="span8">Detail and context</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @issue.comments.each do |issue| %>
+      <tr>
+        <td><%= link_to issue.title, issue_path(issue) %></td>
+        <td>
+          <% issue.statements.each do |d| %>
+            <%= d.name %> : <%= d.body %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

@@ -1,0 +1,23 @@
+<% if items.empty? %>
+  <b>No results</b>
+<% else %>
+  <table>
+  <tr>
+    <th>URL</th>
+    <th>Used in</th>
+    <th>Type</th>
+    <th>Content</th>
+  </tr>
+  <% items.each do |link| %>
+    <tr>
+      <td><%= link.short_link %></td>
+      <td><%= link_to link.issue.try(:title), link.issue %></td>
+      <td><%= link.link_checkable.try(:detail_type) rescue '' %></td>
+      <td><%= link.content %></td>
+    </tr>
+  <% end %>
+  </table>
+
+  <div class="clearfix"></div>
+  <%= paginate items %>
+<% end %>

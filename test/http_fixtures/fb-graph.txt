@@ -1,0 +1,14 @@
+HTTP/1.1 200 OK
+ETag: "7dfe51a2c776f4dd8f66165d6709be00d967af10"
+Content-Type: application/json; charset=UTF-8
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+X-FB-Rev: 1202056
+Cache-Control: private, no-cache, no-store, must-revalidate
+Expires: Sat, 01 Jan 2000 00:00:00 GMT
+X-FB-Debug: 3h5nlV271PMo7x9EY4BQ45K2xrIrABNtnLJpehA8AAM=
+Date: Fri, 11 Apr 2014 09:39:43 GMT
+Connection: keep-alive
+Content-Length: 280
+
+{"id":"1234567","first_name":"Joe","gender":"male","last_name":"Bloggs","link":"https://www.facebook.com/JBloggs","locale":"en_GB","middle_name":"","name":"Joe Bloggs","timezone":1,"updated_time":"2014-03-28T00:16:26+0000","username":"JBloggs","verified":true}

@@ -1,0 +1,186 @@
+<%= render partial: 'form_errors', object: @issue.errors %>
+
+<fieldset id="issueForm">
+  <!-- area -->
+  <div class="area expanded">
+    <div class="heading">
+      <!-- <ul class="tools">
+        <li><a class="open" href="#">open</a></li>
+        <li><a class="remove" href="#">remove</a></li>
+      </ul> -->
+      <h2><%= t('issues.form.page-title-label') %></h2>
+    </div>
+    <div class="slide-block">
+      <div class="holder">
+        <span class="text">
+          <span>
+            <%= form.text_field :title, placeholder: @contextualTitle.placeholder, data: {field_title: @contextualTitle.field_title, field_description: @contextualTitle.field_description, think_about: @contextualTitle.think_about }, disabled: @issue.slug.present? %>
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+<!-- IMAGES -->
+<div class="area">
+	<div class="heading">
+		<!-- <ul class="tools">
+		<li><a class="open" href="#">open</a></li>
+		<li><a class="remove" href="#">remove</a></li>
+		</ul> -->
+		<h2>Images:</h2>
+	</div>
+	<div class="slide-block">
+		<div class="holder">
+			<span class="issue_image" style="float:left;margin-top:22px;">
+				<%= image_tag @issue.image.url, height: '36px' %>
+			</span>
+			<span class="text" style="width:65%;float:left;margin-left:15px;margin-top:22px;">
+				<span>
+					<div id="uploadfile">
+					    <button>Upload new image</button>
+						<input id="issue_image" name="issue[image]" type="file" />
+					</div>
+					<div id="nofileselectedtext">
+						<% if @issue.image = "http://placehold.it/200x140" %>
+							select file for upload
+						<% else %>
+							<%= @issue.image %>
+						<% end %>
+					</div>
+					<!-- <%= form.file_field :image %>
+						<%= form.hidden_field :image_cache %> -->
+				</span>
+			</span><div id="centre"><div class="file-preview"><div class="imagebox"><p>image preview</p></div></div></div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+
+  <!-- area -->
+  <div class="area expanded">
+    <div class="heading" id="detailAndContext" <%= detail_data("context") %>>
+      <!-- <ul class="tools">
+        <li><a class="open" href="#">open</a></li>
+        <li><a class="remove" href="#">remove</a></li>
+      </ul> -->
+      <h2><%= t('issues.form.detail-and-context-label') %></h2>
+			<input type ="button" class="add_source btn btn-blue" value="<%= t('issues.form.add-source-label') %>" rel="tooltip" title="<%= t('issues.form.add-source-help') %>" />
+    </div>
+
+	    <div class="slide-block">
+	      <div class="holder">
+	        <span class="row-t">
+				  <div class="clearfix"></div>
+	          <span><div class="editable textarea edit-field-style arguments-area" contenteditable="true" data-field-title='<%= @contextualContext.field_title %>' data-field-description='<%= @contextualContext.field_description %>' data-think-about='<%= @contextualContext.think_about %>'>
+        <%= raw @issue.context %>
+      </div>
+      <%= form.text_area :context, style: 'display:none' %>
+	          </span>
+	        </span>
+	      </div>
+          </div>
+        </div>
+    <!-- <span id="result">&nbsp;</span> -->
+    <%= render "form_arguments" %>
+
+    <!-- TAGS -->
+    <div class="area">
+      <div class="heading">
+        <!-- <ul class="tools">
+          <li><a class="open" href="#">open</a></li>
+          <li><a class="remove" href="#">remove</a></li>
+        </ul> -->
+        <h2>Tags:</h2>
+			</div>
+      <div class="slide-block">
+        <div class="holder">
+          <span class="text">
+            <span>
+              <%= form.text_field :tag_list, placeholder: @contextualTags.placeholder, data: {field_title: @contextualTags.field_title, field_description: @contextualTags.field_description, think_about: @contextualTags.think_about} %>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="area issue-links">
+      <div class="heading">
+        <h2><%= t('issues.form.links.heading') %></h2>
+      </div>
+      <div class="slide-block">
+
+        <div class="holder">
+          <%= text_field_tag(
+            'search-on-policy-wiki',
+            nil,
+            placeholder: @contextualOnSearch.placeholder,
+            autocomplete: 'off',
+            data: {
+              'field-title' => @contextualOnSearch.field_title,
+              'field-description' => @contextualOnSearch.field_description,
+              'think-about' => @contextualOnSearch.think_about
+            })
+          %>
+          <div id="onPWsearchContainer">
+            <div id="onPWsearchDropdown"></div>
+          </div>
+        </div>
+        <div class="holder">
+          <table class="table-related-issues" id="linksHolder" data-current-issue-title="<%= @issue.title %>">
+            <% form.object.issues.each do |issue| %>
+              <tr class="row statement-row clearfix">
+                <td><%= image_tag(issue.image.thumb, width: 30) %></td>
+                <td><span class="title"><%= issue.title %></span></td>
+                <td><label><%= check_box_tag "issue[issues][#{issue.id}][_destroy]", true %>remove</label></td>
+              </tr>
+            <% end %>
+            <tr class="row statement-row clearfix related-issue-template" hidden>
+              <td><%= image_tag('fallback/thumb_default.png', width: 30) %></td>
+              <td width="80%"><%= hidden_field_tag 'issue[issues_ids][]', '' %> <span class="title">template</span></td>
+              <td width="100px"><a href="#" class="remove-temp-related-issue">remove</a></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+		<!-- IMAGE -->
+    <div class="">
+      <div class="btn-box">
+        <a id='check' class="btn btn-blue save-changes" data-disable-with="Saving...">Save All Changes</a>
+        <ul>
+          <li>Or</li>
+          <li><%= link_to 'Cancel', :back, id: 'cancel-btn' %></li>
+        </ul>
+      </div>
+    </div>
+</fieldset>
+
+<% content_for :sidebar do %>
+  <div id="popup-sidebar" style="display:block;" class="fixedSidebar">
+    <div class="box">
+      <div class="popup-box">
+        <span class="ico">&nbsp;</span>
+        <div class="close-area">
+          <a href="#" id="close-popup" class="close">&times;</a>
+        </div>
+        <div id="helpSidebarTitle" class="popup-sidebar-header"><%= @contextualHelpDefault.field_title %></div>
+        <blockquote class="blockquote" cite="#">
+          <p><q>&#8220;<span id="helpSidebarBody">
+                <%= @contextualHelpDefault.field_description %>
+          </span>&#8221;</q></p>
+        </blockquote>
+        <div class="holder">
+          <h3>Think about...</h3>
+          ...<span id="thinkAboutContainer"><%= @contextualHelpDefault.think_about %></span>
+        </div>
+        <ul class="holder">
+          <%= render partial: "highlight_broken_links" %>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %>

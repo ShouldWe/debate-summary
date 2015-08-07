@@ -1,0 +1,99 @@
+/*
+ * Debate Summary - Croudsource arguments and debates
+ * Copyright (C) 2015 Policy Wiki Educational Foundation LTD <hello@shouldwe.org>
+ *
+ * This file is part of Debate Summary.
+ *
+ * Debate Summary is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Debate Summary is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Debate Summary.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+body {
+  font-family: 'Arial', Helvetia, sans-serif;
+  color: #333;
+  background-color: #fff;
+}
+a, a:link, a:hover, a:visited {
+  color: #1093C7;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+table {
+  font-family: 'Arial', Helvetia, sans-serif;
+  font-size: 14px;
+  width: 100%;
+  border-spacing: 0;
+}
+table th {
+  text-align: left;
+}
+table td {
+  vertical-align: top;
+}
+
+p{
+  margin-top: 0;
+}
+h3 {
+  font-size: 18px;
+}
+hr{
+  border: none;
+  background-color: #bbb;
+  height: 1px;
+}
+.container {
+  border: 1px solid #BBB;
+}
+.header {
+  background-color: #303030;
+}
+.body {
+  padding: 10px 30px;
+}
+.footer {
+  padding: 10px;
+  color: #BBB;
+  font-size: 12px;
+}
+.logo {
+  display: inline-block;
+  width:            91px;
+  height:           28px;
+  background-image: image-url('debate-summary-horizontal-white-email.gif');
+}
+
+.user {
+  width: 200px;
+  margin-right: 20px;
+}
+.user img {
+  border: 1px solid #999;
+  padding: 4px;
+  margin-right: 10px;
+}
+
+.comments {
+  width: 100%;
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+  padding: 30px;
+  color: #888;
+}
+.comments .user img{
+  width: 30px;
+  border: 1px solid #999;
+  padding: 4px;
+}

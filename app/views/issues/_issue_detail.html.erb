@@ -1,0 +1,12 @@
+<p>
+  <strong><%= issue_detail_counter + 1 -%>) <%= issue_detail.title %></strong>
+  <%= render :partial => 'statement', :collection => issue_detail.statements.without_image %>
+</p>
+<div style="float:right">
+  <% issue_detail.statements.with_image.each do |statement_image| %>
+    <p>
+      <%= statement_image.body %><br />
+      <%= image_tag(statement_image.image.thumb.url) %>
+    </p>
+  <% end %>
+</div>

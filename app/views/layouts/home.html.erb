@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html class="no-js" prefix="og: http://ogp.me/ns#" lang="en-gb">
+  <head>
+    <%= render partial: '/layouts/core_head', locals: { stylesheet: 'home' } %>
+  </head>
+  <body>
+    <% if current_user %>
+      <%= render 'layouts/header' %>
+    <%end%>
+    <%= yield %>
+    <%= render '/layouts/footer' %>
+    <%= render '/layouts/welcome_modal' %>
+    <%= javascript_include_tag "home/home", :async => true %>
+    <%= yield :foot %>
+  </body>
+</html>

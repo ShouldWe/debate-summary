@@ -1,0 +1,18 @@
+<div id="footer">
+  <div class="footer-b">
+    <div class="holder">
+      <p class="copy">
+        <%= t('site.copyright-link_html') %> <%= Time.now.year %>
+      </p>
+      <p class="footerlinks">
+        <a href="/help-us">Help us</a> -
+        <a href="/style-guide">Instructions</a> -
+        <a href="/house-rules">House Rules</a> - 
+        <%= link_to "Legal", home_path("legal") %> -
+        <%= link_to "About", home_path("about") %> -
+        <%= link_to "Contact", home_path("contact") %>
+      </p>
+      <p class="info"><%= t('site.short-licence') %></p>
+    </div>
+  </div>
+</div>

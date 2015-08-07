@@ -1,0 +1,28 @@
+<div class="dialog">
+  <%= image_tag('debate-summary-vertical@2x.png') %>
+  <h1>The page you were looking for doesn't exist.</h1>
+  <p>You may have mistyped the address or the page may have moved.</p>
+  <ul>
+    <li>Try going to the <a href="/">Homepage</a></li>
+    <li>Visiting a trending topic below</li>
+    <li>Searching for a topic to view</li>
+  </ul>
+</div>
+
+<div class="search">
+  <%= form_tag "/search", method: :get, role: 'search' do %>
+    <span class="charcoal">Search for:</span>
+    <input type="text" placeholder="<%= @trending_topics.first.title %>" name="search" id="searchHome" autocomplete="off" class="search-query">
+    <div id="homeSearchDropdown" class="search-results"></div>
+
+  <% end %>
+</div>
+
+<div class="trending-topics">
+  <div class="section-header">Trending topics:</div>
+  <ul>
+    <% @trending_topics.each do |topic| %>
+      <li><%= link_to topic.title, topic %></li>
+    <% end %>
+  </ul>
+</div>

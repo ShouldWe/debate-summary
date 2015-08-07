@@ -1,0 +1,24 @@
+<%= tag(:meta, charset: 'utf-8') %>
+<%= tag(:meta, name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0') %>
+<%= content_tag(:title, content_for?(:title) ? yield(:title) + ' - Debate Summary' : "Debate Summary") %>
+<%= tag(:link, rel: 'shortcut icon', href: '/favicon.ico') %>
+<%= tag(:link, rel: 'apple-touch-icon', href: '/apple-touch-icon.png') %>
+<%= tag(:meta, name: 'msapplication-TileImage', content: '/apple-touch-icon.png') %>
+<%= tag(:meta, name: 'msapplication-TileColor', content: '#ffffff') %>
+<%= yield(:meta) %>
+<%= javascript_tag do -%>
+  <% if current_user %>
+      Bugsnag.user = <%=raw current_user.to_json(only: [:id, :name, :email]) %>;
+  <% end %>
+  Bugsnag.appVersion = "<%= Rails.root.realpath.to_s.split('/').last %>";
+  Bugsnag.releaseStage = "<%= Rails.env %>";
+  Bugsnag.notifyReleaseStages = ["staging", "production"];
+<% end -%>
+<!--[if lt IE 7]><script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js"></script><![endif]-->
+<!--[if lt IE 8]><script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script><![endif]-->
+<!--[if lt IE 9]><script type="text/javascript" src="/js/respond.min.js"></script><![endif]-->
+<%= csrf_meta_tags %>
+<%= opengraph_meta_tags %>
+<%= javascript_include_tag 'modernizr.min' %>
+<%= stylesheet_link_tag (stylesheet || 'application'), :media => "all" %>
+<%= yield :head %>

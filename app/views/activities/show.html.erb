@@ -1,0 +1,7 @@
+<% content_for :page_header do %>
+  <div class="title-box" id="historyTitle">
+    <div class="heading">
+      <h2><%= link_to @activity.issue.title + " edit", issue_path(@activity.issue) rescue "Issue deleted" %> </h2>
+<% end %>
+
+<%= render "/issues/activity", activity: @activity if @activity.issue %>

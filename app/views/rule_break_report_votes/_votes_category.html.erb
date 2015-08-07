@@ -1,0 +1,40 @@
+<% if rule_break_reports.empty? %>
+  <p>There is nothing to show here.</p>
+<% else %>
+  <% rule_break_reports.each do |rule_break_report| %>
+
+    <div class="post votepostbox" id="rule_break_report_#{rule_break_report.id}">
+      <div class="disputed_edit">
+        <%= render partial: '/house_rule_break_report/disputed_edit', locals: {activity: rule_break_report.reportable} %>
+        Edit made by <%= link_to rule_break_report.reportable.user.name, rule_break_report.reportable.user %> on <%=l rule_break_report.reportable.created_at %>
+      </div>
+      <h1>Rules violated:</h1>
+      <dl class="dl-horizontal">
+        <% for rule in rule_break_report.sorted_rule_violations %>
+          <dd><%= rule.name %></dd>
+        <% end  %>
+      </dl>
+      <div class="details">
+        <br />
+        Reported by: <%= link_to rule_break_report.reporter.name, rule_break_report.reporter %>
+        on <%=l rule_break_report.created_at %><br><br>
+        <%= link_to "Disputed edit", rule_break_report.reportable %><br />
+        <%= rule_break_report.seriousness_text if current_user.admin? %>
+      </div>
+
+      <div class="votes">
+        <%= render partial: 'votes', locals: {rule_break_report_votes: rule_break_report.rule_break_report_votes} %>
+      </div>
+
+      <% if rule_break_report.resolved? %>
+        <p>This flagging has already been resolved.</p>
+      <% else %>
+        <div class="vote_form">
+          <% rbrv = rule_break_report.user_vote(current_user) || RuleBreakReportVote.new(rule_break_report: rule_break_report, user: current_user) %>
+
+          <%= render partial: 'form', locals: {rule_break_report_vote: rbrv} if rbrv.new_record? %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

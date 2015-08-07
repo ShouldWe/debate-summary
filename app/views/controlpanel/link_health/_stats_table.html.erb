@@ -1,0 +1,6 @@
+<table>
+  <tr><td>Total links:</td><td style="text-align:right"><%= LinkHealth.count %></td></tr>
+  <tr><td>Pending links:</td><td style="text-align:right"><%= LinkHealth.pending.count %> </td></tr>
+  <tr><td>Broken links:</td><td style="text-align:right"><%= LinkHealth.broken.count %></td></tr>
+  <tr><td>Issues with Broken links:</td><td style="text-align:right"><%= Issue.with_broken_links.count %></td></tr>
+</table>

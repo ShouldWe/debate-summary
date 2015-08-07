@@ -1,0 +1,34 @@
+/*Search form*/
+#searchContainer {
+  display:none;
+  position:fixed;
+  top:48px;
+  left:0;
+  background:transparent;
+  width:100%;
+  z-index:500;
+  height:auto;
+  &:before {
+    content: "";
+    display:block;
+    position:absolute;
+    top:-15px;
+    left:50%;
+    width:0;
+    border-width:0 15px 15px;
+    border-style: solid;
+    border-color: @white transparent;
+  }
+}
+
+#searchDropdown {
+  width: 600px;
+  margin: 0 auto;
+  background: @white;
+	border:1px solid @lightGrey;
+  border-top: 0;
+  .advanced-shadow;
+	ol#searchResultsList {
+    .search-results-list;
+	}
+}

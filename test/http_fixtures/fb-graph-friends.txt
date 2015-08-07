@@ -1,0 +1,14 @@
+HTTP/1.1 200 OK
+ETag: "fda6dfebf41db5dd075865003797851da5314af8"
+Content-Type: application/json; charset=UTF-8
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+X-FB-Rev: 1202056
+Cache-Control: private, no-cache, no-store, must-revalidate
+Expires: Sat, 01 Jan 2000 00:00:00 GMT
+X-FB-Debug: u4S7PO2XlzpDFl2O7NDIWRG0c2fhecrDS8/yfmAT29I=
+Date: Fri, 11 Apr 2014 09:35:47 GMT
+Transfer-Encoding: chunked
+Connection: keep-alive
+
+{"data":[{"name":"Joe Bloggs","id":"1234567879"}],"paging":{"next":"https://graph.facebook.com/1234567/friends?limit=5000&offset=5000&__after_id=100000285655349"}}

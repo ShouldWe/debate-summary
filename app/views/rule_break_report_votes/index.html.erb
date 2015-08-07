@@ -1,0 +1,27 @@
+<% content_for :page_header do %>
+<div class="title-box" id="historyTitle">
+	<div class="heading">
+		<h2>Votes</h2>
+	</div>
+</div>
+<% end %>
+
+<ul class="nav nav-tabs">
+  <li><%= link_to 'Vote(' + @rule_break_reports_vote.count.to_s + ')', '#vote', {class: 'active', data: {toggle: "tab"}} %></li>
+  <li><%= link_to 'Previous Votes(' + @rule_break_reports_previous_votes.count.to_s + ')', '#voted', {data: {toggle: "tab"}} %></li>
+  <li><%= link_to 'Decision Due(' + @rule_break_reports_decision_due.count.to_s + ')', '#deadline', {data: {toggle: "tab"}} %></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane" id="vote">
+    <%= render partial: 'votes_category', locals: {rule_break_reports: @rule_break_reports_vote} %>
+  </div>
+
+  <div class="tab-pane" id="voted">
+    <%= render partial: 'votes_category', locals: {rule_break_reports: @rule_break_reports_previous_votes} %>
+  </div>
+
+  <div class="tab-pane" id="deadline">
+    <%= render partial: 'votes_category', locals: {rule_break_reports: @rule_break_reports_decision_due} %>
+  </div>
+</div>

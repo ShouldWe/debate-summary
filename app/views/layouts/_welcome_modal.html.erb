@@ -1,0 +1,3 @@
+<%= javascript_tag do %>
+  window.welcomeMessage = '<div class="welcome-logo"></div><%= escape_javascript(simple_format(t(:welcome_message, scope: [:site]))) %>';
+<% end %>

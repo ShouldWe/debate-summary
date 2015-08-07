@@ -1,0 +1,23 @@
+<% if rule_break_report_votes.blank? %>
+  <p>You will be the first to vote</p>
+<% else %>
+  </br></br>
+  <h2>Who already voted?</h2>
+  <table>
+    <thead>
+      <th>Monitor name</th>
+      <th>Penalty</th>
+      <th>Unilaterally?</th>
+    </thead>
+    <tbody>
+      <% rule_break_report_votes.each do |rbrv| %>
+        <tr>
+          <td><%= link_to rbrv.user.name, rbrv.user %></td>
+          <td><%= rbrv.penalty.name %></td>
+          <td><%= rbrv.apply_unilaterally ? 'Yes' : 'No' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </br></br>
+<% end %>

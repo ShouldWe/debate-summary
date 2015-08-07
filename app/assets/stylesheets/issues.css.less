@@ -1,0 +1,511 @@
+.editable {
+  color: red;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-top: 5px;
+  min-height: 150px;
+}
+.editable-wide {
+  color: red;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-top: 5px;
+  min-height: 100px;
+}
+
+.editable a, .editable-wide a {
+  color: @charcoal;
+  text-decoration:underline !important;
+}
+
+.ediable a {
+  text-decoration:none;
+}
+
+.ediable a:hover {
+  text-decoration:none;
+}
+
+#issue_arrow {
+	width:20px;
+	height:20px;
+	position:relative;
+	float:left;
+	background-image:url(/assets/issue_arrow.png);
+	background-repeat:no-repeat;
+}
+.spaceC {
+	position:relative;
+	overflow: visible;
+	display:block;
+}
+.no-boxshadow #argumentBoxes #forContainer.active{
+  border-right:4px solid #888;
+  border-bottom:4px solid #888;
+}
+
+.no-boxshadow #argumentBoxes #againstContainer.active{
+  border-left:4px solid #888;
+  border-bottom:4px solid #888;
+}
+
+.js #argumentBoxes {
+  #forContainer, #againstContainer{
+    position: absolute;
+  }
+}
+
+#argumentBoxes {
+	position:relative;
+        min-height: 200px;
+    width: 700px;
+	display: inline-block;
+	#forContainer {
+                float: left;
+		width: 343px;
+		display: block;
+		&.active {
+			width:600px;
+			z-index:33;
+			box-shadow: 4px 4px 8px #888888;
+		}
+	}
+	#againstContainer {
+                float: left;
+		width: 343px;
+		left: 357px;
+		display: block;
+                margin-right: 0;
+		&.active {
+			position:absolute;
+			width:600px;
+			left:100px;
+			z-index:33;
+			box-shadow: -4px 4px 8px #888888;
+		}
+	}
+    .area {
+        width:343px;
+        .heading {
+            span {
+                display:none;
+                float:right;
+            }
+        }
+        &.active {
+			.area {
+				width:600px;
+			}
+            width:600px;
+			.slide-block {
+			}
+            .heading {
+                span {
+                    display:block;
+                }
+            }
+        }
+        &:last-child {
+            margin-right: 0px;
+        }
+    }
+}
+.argument-header {
+  color: #4A4C53;
+  font-size: 20px;
+  border-bottom: 1px solid #EDEDED;
+  padding: 0 0 13px;
+  margin: 0 0 10px;
+}
+
+.detail_title {
+  color: #4A4C53;
+  font-weight: bolder;
+  font-size: 14px;
+}
+.detail_title a {
+  color: #4A4C53;
+}
+.slide-arrow {
+	position:relative;
+	float:left;
+	width:20px;
+	height:37px;
+	top:20px;
+	left:10px;
+	background-image:url(/assets/issue_arrow_up.png);
+	background-repeat:no-repeat;
+	&.rotatearrow {
+		background-image:url(/assets/issue_arrow_down.png);
+	}
+}
+.add_source {
+	//float:right;
+	margin-top:10px;
+}
+
+.new-detail {
+	//float:right;
+	.slide-block-margin;
+}
+
+/* UPLOAD IMAGE */
+
+form div.upload { overflow:hidden; }
+
+form div.upload label { font-weight:bold; display:block; margin-bottom:0.25em; }
+.imagebox {
+	position:relative;
+	float:left;
+	width:80px;
+	height:80px;
+}
+.file-preview {
+    /* 630width */
+	position:relative;
+	float:left;
+    background:#F7F7F7;
+	color:#F7F7F7;
+    display:inline-block;
+    float:right;
+	background-repeat:no-repeat;
+    text-align:center;
+	z-index:33;
+}
+
+.file-preview p {
+	padding-top:20px;
+}
+
+/* END */
+
+#restoreArgument {
+	margin-left:100px;
+}
+.noty_close {
+	left:102%;
+	background:red;
+}
+.publisher_text {
+  font-size: 80%;
+  color: #232323;
+}
+#internalList {
+	min-height:100px !important;
+}
+.publisher_image {
+  position:relative;
+  float:left;
+  margin: 0 10px 5px 0;
+ 	width: 5em;
+	height:5em;
+	overflow:hidden;
+}
+img.publisher_image {
+  position:relative;
+  float:left;
+  margin: 0 10px 5px 0;
+ 	width: 5em;
+	height:5em;
+	overflow:hidden;
+	width: 5em;
+}
+
+
+.internal_link_image {
+  position:relative;
+  float:left;
+  margin: 0 10px 5px 0;
+ 	width: 5em;
+	height:5em;
+	overflow:hidden;
+}
+img.internal_link_image_size {
+	width: 5em;
+}
+
+.fixedSidebar{
+  position: fixed;
+  top: 88px;
+}
+
+.addInfoLink {
+  color: @lightBlue !important;
+}
+
+#reportQualityLink {
+  color: @lightBlue !important;
+}
+
+.ratings {border-top: 1px solid @lightGrey;}
+
+#policyContainer {
+  margin-right: 0;
+  position: relative;
+}
+
+#suggestTitleForm {
+	h2 {
+		color: @charcoal;
+		font-size: 24px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid @lightGrey;
+		margin-bottom: 10px;
+		margin-left: 10px;
+	}
+	input[type=text] {
+		width: 400px;
+		height: 30px;
+		font-size: 24px;
+		color: @charcoal;
+		line-height:30px;
+	}
+}
+
+#adjudicationMessage, #selectAdjudication {
+	width: 600px;
+	h2 {
+		margin-top: 5px;
+		padding-bottom: 5px;
+		border-bottom: 1px solid @lightGrey;
+		margin-bottom: 10px;
+		font-size: 30px;
+	}
+	footer.actions {
+		text-align: center;
+		border-top: 1px solid @lightGrey;
+		padding-top: 20px;
+		margin-top: 20px;
+	}
+	header.actions {
+		text-align: center;
+		border-bottom: 1px solid @lightGrey;
+		padding-bottom: 20px;
+		margin-bottom: 20px;
+	}
+}
+
+#titleVoting {
+	.votesCast {
+		float: right;
+		color: @lightBlue;
+	}
+	h2 {
+		color: @charcoal;
+		font-size: 24px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid @lightGrey;
+		margin-bottom: 10px;
+	}
+	ul {
+		list-style: disc;
+		li {
+			position:relative;
+			h4 {
+				font-size: 14px;
+			}
+			span.voteLink {
+				position: absolute;
+				top:3px;
+				right:0px;
+			}
+			span.userInfo {
+				font-size: 10px;
+				vertical-align: text-top;
+				line-height:12px;
+			}
+			border-bottom: 1px solid @lightGrey;
+			margin-bottom: 10px;
+		}
+	}
+	p.footer {
+		text-align:center;
+	}
+}	
+
+.suggestTitle {
+  font-size:12px;
+  line-height:14px;
+  vertical-align:text-top;
+  a {
+    color: @lightBlue;
+  }
+}
+.slide-arrow {
+	position:relative;
+	float:left;
+	width:20px;
+	height:37px;
+	top:20px;
+	left:10px;
+	background-image:url(/assets/issue_arrow_up.png);
+	background-repeat:no-repeat;
+}
+.heading {
+  h2 {
+    float:left;
+    width:auto;
+  }
+  input[type=button] {
+    float:right;
+    margin-top:0;
+  }
+  a.new-detail {
+    float:right;
+    margin:0 20px 0 0;
+    position: relative;
+    top:1px;
+  }
+  a.relevant-data, a.alternative-perspectives {
+      margin-right: 0;
+  }
+}
+
+#editbox22 {
+  position:relative;
+  float:left;
+  width:205px;
+  height:100px;
+/*background:red;*/
+  margin:20px 15px 0 0;
+}
+#userphoto {
+  position:relative;
+  float:left;
+/*background:green;*/
+  height:100px;
+  padding:10px;
+}
+/* TODO: fix that - textbox can appear on this page more than once */
+#textbox {
+  position:relative;
+  float:left;
+/*background:green;*/
+  height:150px;
+  width:440px;
+  padding-top:20px;
+  height: auto;
+}
+#buttons {
+  position:absolute;
+  height:150px;
+  width:220px;
+  text-align:left;
+  bottom:30px;
+  right:0px;
+}
+#buttonsbottom {
+  position:absolute;
+  bottom:5px;
+}
+
+.change {
+	padding-bottom:30px;
+}
+
+.change .from {
+  color: rgb(132, 134, 140);
+  text-decoration:line-through;
+  margin-left:40px;
+}
+.change .to {
+  color: rgb(132, 134, 140);
+  margin-left:40px;
+}
+.change a {
+  color: rgb(132, 134, 140);
+}
+
+.post {
+/*  padding-bottom: 30px;*/
+  overflow:auto;
+}
+
+.issue-links {
+  img {margin-bottom: -8px; margin-top: 8px;}
+  #search-on-policy-wiki {
+	  width: 100%;
+	  padding: 11px 0px;
+	  margin-bottom:0px;
+	  height:14px;
+	  border: 1px solid rgb(204, 204, 204);
+	  letter-spacing:1px;
+	  text-indent:20px;
+  }
+}
+
+.table-related-issues {
+  border: none;
+  border-collapse: collapse;
+}
+.table-related-issues,
+.table-related-issues th,
+.table-related-issues td{
+  border: none;
+}
+
+.table-related-issues .title {
+  color: #1093C7;
+}
+
+.box-shading {
+  background: @white;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  .rounded-corners(5px);
+}
+
+#onPWsearchDropdown {
+/*        position: absolute;
+        top: 90px;*/
+  margin-top:5px;
+  padding: 0;
+  width: 420px;
+  overflow: hidden;
+  margin-left: 0px;
+  z-index: 10000;
+  height: auto;
+  .box-shading;
+  .advanced-shadow;
+  ol#searchResultsList {
+    text-align: left;
+    li {
+      vertical-align:middle !important;
+      border-bottom: 1px solid @lightGrey;
+      img {
+        width: 20px;
+        height: 20px;
+        text-align: left;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+      &:hover {
+        background-color: @lightBlue;
+        a {color: @white;}
+      }
+      a {
+        display:block;
+        padding: 5px 10px;
+        vertical-align: middle;
+        font-size: 14px;
+      }
+      &:hover {
+        background-color: @lightGrey;
+      }
+    }
+    img {margin: 0}
+  }
+}
+
+.flagAsInappropriateTitle {
+  h2 { color: black; }
+}
+
+.block .detail_body a {
+  -ms-word-break: break-all;
+      word-break: break-all;
+      word-break: break-word;
+  -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+          hyphens: auto;
+}

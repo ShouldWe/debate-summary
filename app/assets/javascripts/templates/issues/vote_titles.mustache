@@ -1,0 +1,21 @@
+<section id="titleVoting">
+	<h2>Currently suggested titles for <em>{{title}}</em>.</h2>
+	<ul>
+		{{#suggested_titles}}
+			<li data-id="{{id}}">
+				<h4 data-role="title">{{title}}{{#already_voted}}
+				<span class="votesCast">{{current_score}} vote(s).</span>
+				{{/already_voted}}<h4>
+				<span class="userInfo">Suggested by <a href="/users/{{user.id}}">{{user.name}}</a>.
+				{{#not_voted}}
+				<span class="voteLink">
+					<a href="#" class="voteForLink btn btn-blue" data-title-id="{{id}}">Vote</a>
+				</span>
+				{{/not_voted}}
+			</li>
+		{{/suggested_titles}}
+	</ul>
+	{{#already_voted}}
+	<p class="footer">You have already voted on your prefered title for this issue.</p>
+	{{/already_voted}}
+</section>

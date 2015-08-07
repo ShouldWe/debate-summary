@@ -1,0 +1,60 @@
+<% content_for :foot do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.fancybox').fancybox({
+        autoSize: false,
+        width: 1100,
+        height: 700
+      });
+    });
+  </script>
+<% end %>
+
+<% content_for :page_header do %>
+  <div class="title-box" id="historyTitle">
+    <div class="heading">
+      <h2><%= link_to @issue.title, issue_path(@issue) %></h2>
+    </div>
+  </div>
+<% end %>
+<div id="activities">
+  <%= render partial: "activity", collection: @activity_page %>
+</div>
+<div id="scrollForMore">
+  <%= link_to("Click or scroll for more", "", id: "clickOrScrollForMore") if @activities.length > (@pagination_to + 1)%>
+</div>
+<% content_for :sidebar do %>
+
+  <div id="sidebar_options">
+    <ul class="unstyled">
+      <li><%= link_to "Add a comment", '#', :class => "new_comment issue_#{@issue.id}" %></li>
+      <li><%= link_to "Flat content", '#' %></li>
+    </ul>
+  </div>
+
+<% end %>
+
+<% content_for :templates do %>
+  <div id="new_activity_comment_form">
+  <%= form_for(:comment, :url => issue_comments_path(@issue), :html => { :class => 'form' }) do |form| %>
+    <fieldset>
+    <%= form.hidden_field :commentable_type, :class => 'commentable_type' %>
+    <%= form.hidden_field :commentable_id, :class => 'commentable_id' %>
+    <%= form.text_area :body, :rows => 4, :class => 'span6' %>
+    <br />
+    <%= form.submit "Save", :class => 'btn-small btn-primary' %>
+    <%= link_to 'Cancel', '#', :class => 'btn cancel_comment' %>
+  <% end %>
+  </div>
+
+  <div id="new_comment_form">
+  <%= form_for(:comment, :url => issue_comments_path(@issue), :html => { :class => 'form' }) do |form| %>
+    <fieldset>
+    <%= form.hidden_field :commentable_type, :class => 'commentable_type' %>
+    <%= form.hidden_field :commentable_id, :class => 'commentable_id' %>
+    <%= form.text_area :body, :rows => 4, :cols => 40 %>
+    <%= form.submit "Save", :class => 'btn-small btn-primary' %>
+    <%= link_to 'Cancel', '#', :class => 'btn cancel_comment' %>
+  <% end %>
+  </div>
+<% end %>

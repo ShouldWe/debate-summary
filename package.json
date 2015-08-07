@@ -1,0 +1,14 @@
+{
+  "name": "debate-summary",
+  "private": true,
+  "version": "1.0.0",
+  "devDependencies": {
+    "coffee-script": "^1.9.3",
+    "testem": "^0.9.2"
+  },
+  "scripts": {
+    "test": "testem ci"
+  },
+  "author": "Kyle Welsby <kyle@mekyle.com> (http://mekyle.com)",
+  "license": "GPL-3.0"
+}

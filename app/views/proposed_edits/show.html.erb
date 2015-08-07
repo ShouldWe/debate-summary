@@ -1,0 +1,96 @@
+
+<% content_for :page_header do %>
+<div id="content">
+  <div class="c1" id="policyContainer">
+    <div class="container">
+			<%= link_to (image_tag @issue.image.normal.url, width: 200, height: 140, alt: @issue.title, style: "float:left;"), @issue.image.url, rel: "group", class: "fancybox", id: "header-sidebar" %>
+<div class="policyHeading">
+  <% if @proposed_edit.editable_type == "Issue" && @proposed_edit.title %>
+    <span class="proposed_edit">
+      <%= @proposed_edit.edit_detail.title[0] %> <%= @proposed_edit.edit_detail.title[1] %></br>
+    </span>
+  <% else %>
+    <h2><%= @issue.title %></h2></br>
+  <% end %>
+
+<div class="textblock">
+  <strong>Issue detail and context: </strong><br />
+<div class="detail_body">
+	<span class="proposed_edit">
+		<% if @proposed_edit.edit_detail["context"].present? %>
+			<div class="oldbody"><%= raw @proposed_edit.edit_detail["context"][0] %><br></div>
+			<div class="highlightBody"> <%= raw @proposed_edit.edit_detail["context"][1] %></div>
+		<% else %>
+			<%= raw @issue.context %>
+		<% end %>
+	</div>
+	<%= render :partial => 'issue_detail', :collection => @issue.detail_contexts %>
+</div>
+				
+</div>
+<div class="clearfix"></div>
+
+    </div>
+  </div>
+</div>
+<% end %>
+
+
+<!-- content -->
+<div id="content">
+  <div class="c1">
+    
+    <!-- container -->
+    <div class="container">
+      <!-- block -->
+      <div class="block">
+        <span class="ico">&nbsp;</span>
+        <h2>For:</h2>
+	        <%= render :partial => 'detail', :collection => @issue.detail_fors %>
+      </div>
+      <!-- block -->
+      <div class="block">
+        <span class="ico">&nbsp;</span>
+        <h2>Against:</h2>
+	        <%= render :partial => 'detail', :collection => @issue.detail_againsts %>
+      </div>        
+    </div>
+
+    <!-- container -->
+    <div class="container">
+      <!-- block -->
+      <div class="block block-alt">
+        <span class="ico">&nbsp;</span>
+        <h2><%= t('detail_alternatives', scope: 'activerecord.attributes.issue') %>:</h2>
+			<%= render :partial => 'detail', :collection => @issue.detail_alternatives %>
+        <%# render @issue.detail_alternative %>
+      </div>
+      <!-- block -->
+      <div class="block block-alt">
+        <span class="ico">&nbsp;</span>
+        <h2><%= t('detail_data', scope: 'activerecord.attributes.issue') %>:</h2>
+			<%= render :partial => 'detail', :collection => @issue.detail_data %>
+        <%# render @issue.detail_datum %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+<!--   <div class="box">
+    <p>This is a preview of a change request by <%= @proposed_edit.user.name %></p>
+    <% if current_user.endorsed? %>
+      <ul class="unstyled">
+        <li><%= link_to 'Accept change', accept_proposed_edit_path(@proposed_edit), method: :put %></li>
+        <li><%= link_to 'Reject change', reject_proposed_edit_path(@proposed_edit), method: :put %></li>
+      </ul>
+    <% end %>
+  </div> -->
+<% end %>
+
+
+      <%# raw @issue.tags.map {|tag| link_to tag.name, tag_path(tag.name) }.join(', ') %>
+
+      <%# @issue.issue_links.each do |issue_link| %>
+        <!-- <li><%# link_to issue_link.title, issue_link.url, target: '_blank' %></li> -->
+      <%# end %>

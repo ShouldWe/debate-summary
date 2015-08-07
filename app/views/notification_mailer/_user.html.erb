@@ -1,0 +1,31 @@
+<%-
+  if user.bio_headline && item.try(:created_at)
+    rowspan = 3
+  elsif user.bio_headline || item.try(:created_at)
+    rowspan = 2
+  else
+    rowspan = 1
+  end
+-%>
+<table class="user">
+  <tbody>
+    <tr>
+      <td rowspan="<%= rowspan %>" width="50px">
+        <%= image_tag(user_avatar_url(user), width: 50) %>
+      </td>
+      <th><%= user.name %></th>
+    </tr>
+    <%- if user.bio_headline %>
+      <tr>
+        <td><%= user.bio_headline %></td>
+      </tr>
+    <%- end %>
+    <%- if item.try(:created_at) %>
+      <tr>
+        <td>
+          <%= link_to(item.created_at.to_s(:short), polymorphic_url(item, only_path: false)) rescue item.created_at.to_s(:short) %>
+        </td>
+      </tr>
+    <%- end %>
+  </tbody>
+</table>

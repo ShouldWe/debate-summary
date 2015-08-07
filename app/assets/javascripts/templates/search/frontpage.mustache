@@ -1,0 +1,8 @@
+<!-- Search result mustache for Home Page search -->
+
+<ol id="searchResultsList" class="search-results-list">
+{{#results}}
+	<li><a href="{{searchable.link}}" title="{{searchable.title}}"><img src="{{searchable.pico_url}}" width="30" height="30" title="{{searchable.title}}" alt="{{searchable.title}}">{{searchable.title}}</a></li>
+{{/results}}
+  <li><a href="/issues/new" title="Add a new issue"><span class='fa fa-plus' style="font-size: 24px;line-height:24px; vertical-align: middle;"></span> ... or Start a new debate</a></li>
+</ol>

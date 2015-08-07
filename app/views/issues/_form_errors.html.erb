@@ -1,0 +1,8 @@
+<% if form_errors.any? %>
+  <div class="form-errors">
+    <p>There was a problem saving this page:</p>
+    <% form_errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+  </div>
+<% end %>

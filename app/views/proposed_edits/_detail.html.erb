@@ -1,0 +1,27 @@
+<% if @proposed_edit.editable_type == "Detail" && @proposed_edit.editable_id == detail.id %>
+  <span class="proposed_edit">
+    <% if @proposed_edit.edit_detail["title"] %>
+  	  <% if @proposed_edit.edit_detail["title"][0].present? %>
+  	      <div class="oldbody"><h3><%= @proposed_edit.edit_detail["title"][0] %></h3></div>
+  	  <% end %>
+  	  <div class="highlightBody"><h3><%= @proposed_edit.edit_detail["title"][1] %></h3></div>
+    <% else %>
+      <h3><%= detail.title %></h3>
+    <% end %>
+    <% if @proposed_edit.edit_detail["body"] %>
+      <div class="detail_body edited_body">
+    	  <% if @proposed_edit.edit_detail["body"][0].present? %>
+    	      <div class="oldbody"><%= @proposed_edit.edit_detail["body"][0].html_safe %></div>
+    	  <% end %>
+      <div class="highlightBody"><%= @proposed_edit.edit_detail["body"][1].html_safe %></div>
+    </div>
+    <% end %>
+  </span>
+<% else %>
+  <% if detail.title %><h3><%= detail.title %></h3><% end %>
+  <div class="detail_body">
+    <%= detail.body.html_safe %>
+  </div>
+  <br />
+  <br />
+<% end %>

@@ -1,0 +1,13 @@
+<div class="signloginholder">
+  <ol>
+
+    <li class="fa-2x"><br>Sign in with<br><br></li>
+
+    <li><%= link_to fa_icon("facebook-square", text: "Facebook"), user_omniauth_authorize_path(:facebook), class: 'fa-2x' %></li>
+
+    <li><%= link_to fa_icon("twitter-square", text: "Twitter"), user_omniauth_authorize_path(:twitter), class: 'fa-2x' %></li>
+
+    <li><%= link_to fa_icon("linkedin-square", text: "LinkedIn"), user_omniauth_authorize_path(:linkedin), class: 'fa-2x' %></li>
+
+  </ol>
+</div>

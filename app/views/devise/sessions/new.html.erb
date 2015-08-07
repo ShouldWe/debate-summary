@@ -1,0 +1,41 @@
+<div class="signloginholder">
+  <% if params[:show_email]  %>
+    <h2>Sign in</h2>
+    </br>
+    <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <fieldset>
+      <div class="control-group">
+        <%= f.label :email, :class => 'control-label' %>
+        <div class="controls">
+        <%= f.email_field :email, :required => false, :autofocus => true, :class => 'input-xlarge' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :password, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password, :required => false %>
+      </div>
+    </div>
+    <div class="control-group">
+        <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+    </div>
+
+    <div class="signup_in_submit">
+      <%= f.button :submit, "Sign in", :class => 'btn btn-primary'  %>
+    </div>
+      
+    <% end %>
+
+    <%= link_to "Reset password", new_user_password_path %>
+  <% end %>
+</div>
+<div class="signloginholder">
+
+  <p class="fa-3x">Sign in with<br><br></p>
+
+  <%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <div class="omniauth_link <%=provider.to_s.titleize%>"><%= link_to fa_icon(provider.to_s+"-square", text: "#{provider.to_s.titleize}"), omniauth_authorize_path(resource_name, provider), :class => 'fa-3x'  %></div>
+   <% end -%>
+  <% end %>
+</div>

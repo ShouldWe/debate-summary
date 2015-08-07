@@ -1,0 +1,5 @@
+User-Agent: libwww-perl
+Disallow: /
+
+User-Agent: *
+<%= "Disallow: /" unless Rails.env.production? %>

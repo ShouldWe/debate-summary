@@ -1,0 +1,15 @@
+<div class="modal hide fade" id="reportModal">
+  <div class="modal-header">
+    <h3 style="font-size:18px;font-weight:bold;">Report Issue Quality</h3>
+  </div>
+  <div class="modal-body">
+      <form action="/issues/{{issueId}}/report" method="post" id="reportForm">
+        <input type="hidden" name="authenticity_token" value="{{authToken}}">
+        <textarea id="content" name="report[problem]" placeholder="Summarise the problem here..." style="width:98%;height:300px;"></textarea>
+  </div>
+  <div class="modal-footer">
+      <input type="submit" class="btn btn-blue" value="Report">
+    </form>
+  </div>
+</div>
+<div class="modal-backdrop hide fade"></div>

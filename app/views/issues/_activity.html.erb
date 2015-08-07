@@ -1,0 +1,78 @@
+
+<div id="<%= activity.id %>"></div>
+
+<!-- post-block -->
+<div class="post-block">
+
+  <!-- post -->
+  <div class="post">
+
+  <%= render partial: 'issues/activity_changes', locals: { activity: activity }  %>
+  <div id="buttons">
+    <div id="buttonsbottom">
+	  <% if activity.id.to_i != params[:id].to_i %>
+        <%= link_to "This edit only", activity %><br>
+	  <% end %>
+
+      <%= link_to 'View entire change', proposed_edit_path(activity.proposed_edit.id), :class => 'btn-change fancybox fancybox.iframe' %><br>
+      <%= link_to "Comment", "#", class: "commentOnActivity" unless activity.comments.count > 0 %><br>
+
+      <% if ! activity.already_flagged_as_inappropriate?(current_user) %>
+        <%= link_to "Flag as inappropriate (#{activity.rule_break_reports_count.to_s})", new_activity_house_rule_break_report_path(activity), :class => 'btn-flag-imappropriate' %><br>
+        <!-- <a class="btn-request" id="adjudicationRequest" href="#">Request Adjudication?</a> -->
+      <% else %>
+        <% rbr = activity.get_rule_break_report_by(current_user) %>
+        <% if ! rbr.resolved? %>
+          <%= link_to "Unflag (#{activity.rule_break_reports_count.to_s})", activity_house_rule_break_report_path(activity, rbr), :class => 'btn-flag-imappropriate activity-unflag', data: {rbr_id: rbr.id} %><br/>
+          <%= form_tag activity_house_rule_break_report_path(activity, rbr), method: :delete, id: "unflag-form-rule-break-report-#{rbr.id}"  %>
+          </form>
+        <% end %>
+      <% end %>
+      <%= link_to "Like", vote_for_path(activity), :class=>"btn-like vote-for #{current_user.voted_for?(activity)? 'hide' : ''}", :id=>"vote-for-#{activity.id}",
+                  :data => { :activity_id => activity.id } %>
+
+      <%= link_to "Un-like", vote_against_path(activity), :class=>"btn-un-like vote-against #{current_user.voted_for?(activity)? '' : 'hide'}",
+                  :id=>"vote-against-#{activity.id}",
+                  :data => { :activity_id => activity.id } %>
+
+      <span id="votes_total_<%=activity.id%>", class="btn-like-data">(<%= activity.votes_for %>)</span>
+
+    </div>
+  </div>
+  </div><!-- post -->
+
+  <div style="clear: both;"></div>
+
+  <!-- comment-form start -->
+  <div class="form-horizontal">
+      <%= simple_form_for :comment, :url => activity_comments_path(activity), :html => {:class => "comment-form"} do |f| %>
+        <%= hidden_field_tag :activity_id, activity.id %>
+        <fieldset>
+          <% if activity.comments.count > Rails.application.config.number_of_comments_to_show.to_i %>
+            <div class="show-more-comments" id="show-more-comments-<%= activity.id %>">
+              <%= link_to "View all #{activity.comments.count} comments",
+                          activity_all_comments_path(activity),
+                          :data => { :"activity_id" => activity.id } %>
+              <span id="show-more-comments-loading-<%= activity.id %>" class="hide">Loading...</span>
+              <span id="show-more-comments-error-<%= activity.id %>" class="hide error">There was an error loading comments. Please try again later.</span>
+            </div>
+          <% end %>
+
+          <!-- comments-list -->
+          <div class="comments-list" id="comment-list-<%= activity.id %>">
+            <% activity.comments.order('created_at DESC').limit(Rails.application.config.number_of_comments_to_show.to_i).reverse.each do |comment| %>
+              <%= render "/issues/comment.html.erb", comment: comment %>
+            <% end %>
+          </div>
+
+          <div class="holder">
+            <%= image_tag current_user.avatar.thumb.url, class: 'ico', width: 35, height: 35 %>
+            <span class="text">
+              <%= f.text_field :body, :style => "width: 680px; margin-right: 20px;" %>
+              <%= f.submit "Post comment", :class => "btn" %>
+            </span>
+          </div>
+        </fieldset>
+      <% end %>
+    </div> <!-- comment-form end -->
+</div> <!-- post-block -->

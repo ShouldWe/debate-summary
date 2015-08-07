@@ -1,0 +1,21 @@
+<div class="modal hide fade" id="messageModal">
+  <div class="modal-header">
+    <h3 style="font-size:18px;font-weight:bold;">Send message to <%= @user.name %></h3>
+  </div>
+  <div class="modal-body">
+    <%= form_for Message.new, url: mailbox_path do |f| %>  
+      <div class="span3">
+        <%= f.hidden_field :recipient_id, value: @user.id %>
+        <%= f.text_field :title, style: "width:98%;", placeholder: "Enter a title..." %>
+        <%= f.text_area :content, style: "width:98%;", placeholder: "Enter your message..." %>
+      </div> 
+  </div>
+  <div class="modal-footer">
+      <p>
+        <%= link_to "Cancel", '#', class: "btn", id: "cancelLink" %>
+        <%= f.submit "Send Message", class: "btn btn-blue" %>
+      </p>  
+      <% end %>
+  </div>
+</div>
+<div class="modal-backdrop hide fade"></div>

@@ -1,0 +1,50 @@
+<div class="row statement-row nested-fields">
+  <div class="span3">
+    <div class="control-group  span3">
+      <%= f.label 'Statement name', :class => 'control-label indented' %>
+      <div class="controls">
+        <%= link_to_remove_association '&times;'.html_safe, f, :class => 'remove_icon' %>&nbsp;
+        <%= f.text_field :name, :class => 'statement_name' %>
+        <p class="indented">
+          <%= link_to 'Up', '#', :class => 'statement_up' %>&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= link_to 'Down', '#', :class => 'statement_down' %>&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= link_to 'Add', '#', :class => 'add_new_statement_fields' %>
+        </p>
+        <p class="indented">
+          <%= f.check_box :new_paragraph %> New paragraph
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="span5">
+    <div class="control-group">
+      <div class="text_statement">
+        <span class="control-label">
+          Text
+          <%= link_to 'Insert image', '#', :class => 'insert_image_button' %>
+        </span>
+        <div class="controls">
+          <%= f.text_area :body, :rows => 4, :class => 'span5' %>
+        </div>
+      </div>
+      <div class="image_statement" style="display:none">
+        <span class="control-label">
+          <%= link_to 'Text only', '#', :class => 'insert_text_button' %>
+          image
+        </span>
+        <div class="controls">
+          Image title <%= f.text_field :body, :class => 'span5' %>
+          <%= f.file_field :image, :class => "input-file" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="span2">
+    <div class="control-group">
+      <%= f.label 'Source', :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :source, :rows => 4, :class => 'span2' %>
+      </div>
+    </div>
+  </div>
+</div>

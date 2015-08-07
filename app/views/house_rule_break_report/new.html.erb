@@ -1,0 +1,55 @@
+<% content_for :page_header do %>
+  <div class="title-box flagAsInappropriateTitle">
+    <div class="heading">
+      <%= @rule_break_title %>
+<% end %>
+
+<div class="post">
+  <%= render partial: 'errors/form_errors', locals: { object: @rbr } %>
+  <%= @rule_break_top %>
+  <div id="textbox">
+    <%= render partial: 'disputed_edit', locals: {activity: @activity} %>
+  </div>
+  <div style="clear: both;"></div>
+
+  <div id="flag_as_inappropriate_form">
+    <%= simple_form_for(@rbr, :url => activity_house_rule_break_report_index_path(@activity), :html => { :class => 'form-horizontal' }) do |f| %>
+      <div>
+        <div class="unindent">
+          <%= f.label :house_rule_id, "Which of our house rules do you think has been broken?" %><br>
+        </div>
+        <% HouseRule.name_sorted_number.each do |hr| %>
+          <% if @rbr.house_rule_ids.include?(hr.id) %>
+            <%= check_box_tag "rule_break_report[house_rule_ids][]", hr.id, checked: "checked" %>
+          <% else %>
+            <%= check_box_tag "rule_break_report[house_rule_ids][]", hr.id %>
+          <% end %>
+          <%= f.label :house_rule_id, hr.name %>
+          <br/>
+        <% end %>
+      </div>
+      <div>
+        <div class="unindent">
+          <%= f.label :message, "Please explain how this edit breaks the house rules" %><br>
+        </div>
+        <%= f.text_area :message, rows: 10, cols: 75 %>
+      </div>
+      <div>
+        <div class="unindent">
+          How serious do you believe this is?
+        </div>
+        <% RuleBreakReport::Seriousness.each_with_index do |text,ind| %>
+      		<%= f.radio_button :seriousness, ind %>
+      		<%= label :seriousness, text %><br>
+        <% end %>
+      </div>
+  	  <div class="unindent">
+        <%= @rule_break_bottom %>
+  	  </div>
+      <div class="unindent">
+        <%= f.button :submit, "Submit rule break report", :class => 'btn btn-blue' %>
+        <%= link_to 'Cancel', history_issue_path(@activity.issue), class: "btn"  %>
+      </div>
+    <% end %>
+  </div>
+</div>

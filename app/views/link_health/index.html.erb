@@ -1,0 +1,67 @@
+<h1>Broken Links<h1>
+
+<table>
+<% @broken_links.each do |link| %>
+  <tr>
+    <td><%= link.last.size %></td>
+    <td><%= link.first %>
+      (<%= link.last.map {|i| link_to i.issue.title, i.issue}.join(',').html_safe %>)</td>
+    <td><%= link.last.last.can_display %></td>
+  </tr>
+<% end %>
+</table>
+
+<h1>All Links<h1>
+
+<table>
+<% @all_links.each do |link| %>
+  <tr>
+    <td><%= link.last.size %></td>
+    <td><%= link.first %>
+      (<%= link.last.map {|i| link_to i.issue.title, i.issue}.join(',').html_safe %>)</td>
+    <td><%= link.last.last.can_display %></td>
+  </tr>
+<% end %>
+</table>
+
+<h1>Duplicates<h1>
+
+<table>
+<% @duplicates.each do |k,v| %>
+  <% if @duplicates[k].count > 1 %>
+    <tr>
+
+      <td><%= k %></td>
+      <td>
+        <%= v.map do |i|
+          link_to i.issue.title, i.issue
+        end.join(',').html_safe %>
+      </td>
+
+    </tr>
+  <% end %>
+<% end %>
+</table>
+
+<h1>MimeTypes<h1>
+
+<table>
+<% @mime_types.each do |k,v| %>
+  <tr>
+    <td><%= k %></td>
+    <td><%= @mime_types[k].count %></td>
+    <td>
+      <%= v.map do |i|
+        link_to i.issue.title, i.issue
+      end.join(',').html_safe %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+
+<h1>Stats</h1>
+
+Failing Links: <%= @broken_links.count %>
+
+Total Links: <%= LinkHealth.count %>

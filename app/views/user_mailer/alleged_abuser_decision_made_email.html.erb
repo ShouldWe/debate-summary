@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+<%= @template.render("user" => @user, 
+                     "site" => @site, 
+                     "rule_break_report" => @rule_break_report, 
+                     "broken_rules" => @broken_rules, 
+                     "issue_url" => link_to(@rule_break_report.reportable.issue.title, @rule_break_report.reportable.issue)).html_safe %>
+</body>
+</html>

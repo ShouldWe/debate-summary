@@ -1,0 +1,40 @@
+<%-
+  param_name = "detail_#{form_argument.detail_type.pluralize}"
+  id = form_argument.try(:id) || form_argument.try(:object_id) || Time.now.to_i
+-%>
+
+<div class="area-content" data-id="<%= id %>">
+  <div class="area-arrow"></div>
+  <div class="area-holder">
+    <div class="area-title">
+      <%= text_field_tag "#{param_name}[#{id}][title]", form_argument.title,
+        class: 'area-title-input',
+        placeholder: form_argument.context_title.placeholder,
+        data: {
+          'field-title' => form_argument.context_title.field_title,
+          'field-description' => form_argument.context_title.field_description
+        }%>
+    </div>
+
+    <div class="clearfix">
+      <span class="pull-right">
+        <button type="button" class="btn btn-blue add_source"><%= t('issues.form.add-source-label') %></button>
+        <button type="button" class="btn delete-argument">Delete argument</button>
+      </span>
+    </div>
+
+    <div class="clearfix">
+      <textarea name="<%= param_name %>[<%= id %>][body]" style="display:none;"><%= form_argument.body.try(:html_safe) %></textarea>
+      <%= content_tag :div,
+        class: "area-contenteditable",
+        contenteditable: true,
+        data: {
+          'field-title' => form_argument.context_body.field_title,
+          'field-description' => form_argument.context_body.field_description,
+          'think-about' => form_argument.context_body.think_about
+        }  do %>
+        <%= form_argument.body.try(:html_safe) %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="signloginholder">
+<h2>Sign in</h2>
+</br>
+<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+<fieldset>
+  <div class="control-group">
+	  <%= f.label :email, :class => 'control-label' %>
+	  <div class="controls">
+    <%= f.email_field :email, :required => false, :autofocus => true, :class => 'input-xlarge' %>
+</div>
+</div>
+<div class="control-group">
+	<%= f.label :password, :class => 'control-label' %>
+	<div class="controls">
+    <%= f.password_field :password, :required => false, :class => 'input-xlarge' %>
+</div>
+</div>
+<div class="control-group">
+    <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+  </div>
+  <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+
+  <div class="signup_in_submit">
+    </br></br><%= f.button :submit, "Sign in", :class => 'btn btn-blue'  %>
+  </div>
+<% end %>
+
+</div>
+	<section class="signup">
+<h2>Sign up</h2>
+</br>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
+
+    <%=raw devise_error_messages_bootstrap! %>
+  </p>
+    
+  <fieldset>
+    <div class="control-group">          
+      <%= f.label :name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :email, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.email_field :email, :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :password, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password, :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label "Confirm Password", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :password_confirmation, :class => 'input-xlarge' %>
+      </div>
+    </div>
+
+    <div class="signup_in_submit signup_in_width">
+      </br></br><%= f.submit "Sign up", :class => 'btn btn-blue' %>
+    </div>
+
+    </fieldset>
+  <% end %>
+</section>
+
+<div class="omniauth_holder">
+	<div class="omniauth_link Facebook">
+		<a href='#' id='socialShare' class='btn btn-blue'>Sign up/in with Facebook</a>
+	</div>
+	<div class="omniauth_link Twitter">
+		<a href='#' id='socialShare' class='btn btn-blue'>Sign up/in with Twitter</a>
+	</div>
+</div>
+
+
+<!-- <div class="omniauth_holder">
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <div class="omniauth_link <%=provider.to_s.titleize%>"><%= link_to "Sign up/in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), :class => 'btn btn-blue'  %></div>
+  <% end -%>
+<% end -%>
+ -->

@@ -1,0 +1,10 @@
+$('.form-errors').remove();
+
+bootbox.animate(false);
+<% if @issue.errors.any? %>
+    document.getElementById('check').innerHTML = 'Save All Changes';
+    bootbox.alert('<%= escape_javascript(render(partial: 'form_errors', object: @issue.errors)) %>');
+<% else %>
+    document.getElementById('check').innerHTML = 'Saved';
+    window.location = "<%= issue_path(@issue) %>";
+<% end %>

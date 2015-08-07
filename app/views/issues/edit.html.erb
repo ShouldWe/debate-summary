@@ -1,0 +1,41 @@
+<% content_for(:title, "Edit: #{@issue.title}") %>
+<!-- content -->
+<div id="content">
+  <div class="c1">
+
+    <%= form_for(@issue, :html => { :id => 'issue-edit', :class => 'edit-form', :multipart => true, remote: true}) do |f| %>
+      <% if @issue.errors.any? %>
+      <!-- <div class="alert-message block-message error"> -->
+        <p>There was a problem creating this listing:</p>
+        <ul>
+        <% @issue.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        <ul>
+      <!-- </div> -->
+      <% end %>
+	<h2>Edit: <%= link_to @issue.title, issue_path %></h2><br/>
+      <%= render 'form', :form => f %>
+    <% end %>
+  </div>
+</div>
+
+<% if ! @issue.user_allowed_to_edit? current_user %>
+  <% activities = @issue.activities_blocking_user(current_user) %>
+  <div id="disable_edit" style="display:none;">
+    <p>
+      You are not allowed to edit this issue. This is because
+      <%= link_to "the change you've made", activities.first %>
+      was flagged as inappropriate by a user and a decision was subsequently made to block you from editing this
+      <% if current_user.banned_globally? %>
+        site
+      <% else %>
+        issue
+      <% end %>
+      until <%= @issue.user_ban_will_be_lifted_on(current_user).strftime("%d %B %Y") %>.</p>
+
+    <%= link_to 'Back to issue', @issue, class: 'btn btn-blue btn-right' %>
+
+  </div>
+<% end %>
+

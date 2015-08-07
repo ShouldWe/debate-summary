@@ -1,0 +1,19 @@
+<% content_for :page_header do %>
+	<div class="title-box" id="historyTitle">
+		<div class="heading">
+		<h2><%= link_to @issue.title, issue_path(@issue) %></h2></br></br>
+		<% @issue.detail_fors.each do |idf| %>
+			<% @idfid = raw idf.id %>
+			<% if @idfid == @pageid %>
+				<h2><div id="statementSubTitle"><%= idf.title %></div></h2>
+			<% end %>
+		<% end %>
+<% end %>
+
+<% @issue.activities.latest.each do |activity| %>
+	<% @statements.each do |pe| %>
+		<% if pe.id == activity.proposed_edit_id %>
+			<%= render"activity", activity: activity %>
+		<% end %>
+	<% end %>
+<% end %>

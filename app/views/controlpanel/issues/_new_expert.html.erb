@@ -1,0 +1,10 @@
+<%= form_tag "/controlpanel/issue_roles", via: :post, html: {class: "formtastic settings"} do %>
+    <%= hidden_field_tag "expert[issue_id]", issue.id %>
+    <%= select_tag "expert[user_id]", options_from_collection_for_select(User.all, :id, :name), style: "width:300px;"%>
+    <hr style="height:5px;">
+		<ol>
+			<li class="commit button">
+				<%= submit_tag "Add Expert", class: "create" %>
+			</li>
+		</ol>
+<% end %>

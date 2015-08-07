@@ -1,0 +1,4 @@
+<div class="alert alert-error">
+  <%= flash[:error] ? flash[:error] : t('login.omniauth_error_unknown') %>
+</div>
+<%= render file: '/sm_login/pick_method' %>

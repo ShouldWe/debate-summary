@@ -1,0 +1,4 @@
+<% contribs.each_with_index do |contrib, index| %>
+	<%= link_to contrib.name, controlpanel_user_path(contrib) %>
+	<%= ", " unless index == contribs.size - 1 %>
+<% end %>

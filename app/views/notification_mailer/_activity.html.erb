@@ -1,0 +1,51 @@
+<%- comment_count = activity.comments.count %>
+<table class='activity'>
+  <tbody>
+    <tr>
+      <td width="200">
+        <%= render partial: 'user', object: activity.user, locals: {item: activity} %>
+      </td>
+      <td>
+        <%- changes = activity.proposed_edit.get_changed_data_to_be_displayed_to_the_user rescue {} %>
+        <%- if changes.any? %>
+          <%- changes.each_key do |key| %>
+            <hr>
+            <h4><%= key.capitalize %> changed from:</h4>
+            <%- if key =~ /image/ %>
+              <%= image_tag(changes[key][0].strip) %>
+            <%- elsif  %>
+              <%= simple_format(changes[key][0].try(:strip)) %>
+            <%- end %>
+            <h4>To: </h4>
+            <%- if key =~ /image/ %>
+              <%= image_tag(changes[key][1].strip) %>
+            <%- else %>
+              <%= simple_format(changes[key][1].try(:strip)) %>
+            <%- end %>
+          <%- end %>
+        <%- else %>
+          <hr>
+          <p>Made a change, but there was not comparable difference.</p>
+        <%- end %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <table class='comments'>
+          <% activity.comments.order('created_at').limit(3).each do |comment| %>
+            <tr>
+              <td width="200">
+                <%= render partial: 'user', object: comment.user, locals: {item: comment} %>
+              </td>
+              <td>
+                <%= simple_format comment.body %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+        <%= link_to(pluralize(comment_count - 3, 'more comment'), polymorphic_url(activity, only_path: false)) if comment_count - 3> 0 %>
+        <hr/>
+      </td>
+    </tr>
+  </tbody>
+</table>

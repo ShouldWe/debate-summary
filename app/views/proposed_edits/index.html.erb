@@ -1,0 +1,9 @@
+<%= debug @proposed_edit %>
+
+
+  <% @proposed_edit.each do |detail| %>
+    <%= detail.id %></br>
+<%= detail.created_at %></br>
+<%= detail.change_data[83,300] %>...</br>
+
+    <% end %>

@@ -1,0 +1,20 @@
+<% changes = activity.proposed_edit.get_changed_data_to_be_displayed_to_the_user %>
+<% if ! changes.empty? %>
+  <% changes.each_key do |key| %>
+    <div class="change">
+      <%= key.capitalize %> changed from:
+      <% if key =~ /image/ %>
+        <br/>
+        <%= image_tag changes[key][0] %>
+        <br/>
+        to:
+        <br/>
+        <%= image_tag changes[key][1] %>
+      <% else %>
+        <div class="from"><%= simple_format(changes[key][0].to_s || '') %></div>
+        to:
+        <div class="to"><%= simple_format(changes[key][1].to_s || '') %></div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

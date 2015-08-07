@@ -1,0 +1,28 @@
+{
+  "framework": "jasmine2",
+  "launch_in_dev": [
+    "Chrome"
+  ],
+  "before_tests": "./script/testem_precompile.sh",
+  "src_files": [
+    "app/assets/javascripts/*.coffee",
+    "test/javascripts/*.coffee"
+  ],
+  "parallel": 1,
+  "timeout": 120000,
+  "serve_files": [
+    "vendor/assets/javascripts/jquery-1.9.1.js",
+    "vendor/assets/javascripts/jquery.fancybox.js",
+    "vendor/assets/javascripts/bootstrap-2.3.2.min.js",
+    "vendor/assets/javascripts/bootbox-3.2.0.min.js",
+    "vendor/assets/javascripts/jquery.rateit.min.js",
+    "vendor/assets/javascripts/jquery.hoverIntent.js",
+    "vendor/assets/javascripts/jquery.noty.js",
+    "vendor/assets/javascripts/jquery.htmlClean-1.4.0.js",
+    "vendor/assets/javascripts/hogan.js",
+    "vendor/assets/javascripts/rangy-core-1.3alpha.804.js",
+    "app/assets/javascripts/*.js",
+    "./.coffee/**/*.js"
+  ],
+  "on_exit": "rm -r ./.coffee"
+}

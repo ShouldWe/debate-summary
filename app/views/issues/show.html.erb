@@ -1,0 +1,248 @@
+<% content_for(:title, @issue.title) %>
+<% content_for(:meta) do %>
+  <%= tag(:meta, name: 'keywords',            content: @issue.tags.collect(&:name).join(', ')) %>
+  <%= tag(:meta, name: 'description',         content: truncate(@issue.description, length: 150, separator: '. ')) %>
+  <%= tag(:meta, name: 'canonical',           content: full_url(issue_url(@issue))) %>
+  <%= tag(:meta, name: 'twitter:card',        content: 'summary') %>
+  <%= tag(:meta, name: 'twitter:title',       content: @issue.title) %>
+  <%= tag(:meta, name: 'twitter:description', content: @issue.description) %>
+  <%= tag(:meta, name: 'twitter:image',       content: full_url(@issue.image.normal.url)) %>
+  <%= tag(:meta, property: 'og:type',        content: 'article') %>
+  <%= tag(:meta, property: 'og:site_name',   content: "Debate Summary") %>
+  <%= tag(:meta, property: 'og:locale',      content: 'en_GB') %>
+  <%= tag(:meta, property: 'og:title',       content: @issue.title) %>
+  <%= tag(:meta, property: 'og:image',       content: full_url(@issue.image.normal.url)) %>
+  <%= tag(:meta, property: 'og:description', content: @issue.description) %>
+  <%= tag(:meta, property: 'og:article:published_time', content: @issue.created_at.iso8601) %>
+  <%= tag(:meta, property: 'og:article:modified_time', content: @issue.updated_at.iso8601) %>
+  <% @issue.tags.each do |tag_item| %>
+    <%= tag(:meta, property: 'og:article:tag', content: tag_item.name) %>
+  <% end %>
+<% end %>
+<% content_for :page_header do %>
+  <div id="content">
+    <div class="c1" id="policyContainer">
+      <div class="container">
+        <%= link_to (image_tag @issue.image.normal.url, width: 200, alt: @issue.title, style: "float:left;"), @issue.image.url, rel: "group", class: "fancybox", id: "header-sidebar" %>
+        <div class="policyHeading">
+          <h1 class="issue-header"><%= @issue.title %></h1>
+          <div class="textblock">
+            <strong>Issue detail and context: </strong><br />
+            <div class="detail_body">
+              <% if @issue.context != nil %>
+                <%= @issue.context.html_safe %>
+              <% end %>
+            </div>
+
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="policy-heading-sidebar">
+          Please help us&hellip;
+          <div><%= link_to t('issues.edit-this-page-link'), edit_issue_path(@issue), class: "btn btn-blue", id: force_login_dialog_id %></div>
+          <div class="policy-heading-sidebar-share">
+            Share:
+            <%= render partial: '/layouts/social' %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div id="content">
+  <div class="c1">
+    <div class="container" id="argumentsContainer">
+      <div class="block">
+        <div class="argument-header">Yes:</div>
+        <%  if @detail_fors.collect(&:body).join().present? %>
+          <%= render :partial => 'detail', :collection => @detail_fors %>
+        <% else %>
+          <%= link_to t('issues.why_not_add_info'), edit_issue_path(@issue), class: "addInfoLink", id: force_login_dialog_id%>
+        <% end %>
+      </div>
+      <!-- block -->
+      <div class="block">
+        <div class="argument-header">No:</div>
+        <%  if @detail_againsts.collect(&:body).join().present? %>
+          <%= render :partial => 'detail', :collection => @detail_againsts %>
+        <% else %>
+          <%= link_to t('issues.why_not_add_info'), edit_issue_path(@issue), class: "addInfoLink", id: force_login_dialog_id%>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="block">
+        <div class="argument-header"><%= t('detail_alternatives', scope: 'activerecord.attributes.issue') %>:</div>
+        <%  if @detail_alternatives.collect(&:body).join().present? %>
+          <%= render :partial => 'detail', :collection => @detail_alternatives %>
+        <% else %>
+          <%= link_to t('issues.why_not_add_info'), edit_issue_path(@issue), class: "addInfoLink", id: force_login_dialog_id%>
+        <% end %>
+
+      </div>
+
+      <div class="block">
+        <div class="argument-header"><%= t('detail_data', scope: 'activerecord.attributes.issue') %>:</div>
+        <%  if @detail_relevants.collect(&:body).join().present? %>
+          <%= render :partial => 'detail', :collection => @detail_relevants %>
+        <% else %>
+          <%= link_to t('issues.why_not_add_info'), edit_issue_path(@issue), class: "addInfoLink", id: force_login_dialog_id%>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="templates" style="display:none">
+  <span class="ico bubble">&nbsp;</span>
+</div>
+
+<%= render 'share_modal' if @updated_issue %>
+
+<% content_for :sidebar do %>
+  <div id="popup-sidebar">
+    <div class="box">
+      <div class="popup-box">
+        <span class="ico">&nbsp;</span>
+        <div class="close-area">
+          <a href="#" id="close-popup" class="close">&times;</a>
+        </div>
+        <div class="boxover">
+
+          <div class="holder">
+            <h3><%= t('issues.popup-sidebar.headings.supporting-evidence') %></h3>
+            <a id="statement_source"></a>
+          </div>
+          <div id="sidesocial">
+            <%= render partial: '/layouts/social' %>
+            <input type=hidden id="detail_target_href"/>
+          </div>
+          <div class="popup-box-bottom">
+            <blockquote class="blockquote" cite="#">
+              <p><q>&#8220;<span id="statement_body">The 'Living Proof' project of the Bill and Melinda Gates Foundation showcases examples of multilateral aid saving and changing lives.</span>&#8221;</q></p>
+            </blockquote>
+            <a id="boxcommentlink">link</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="popup-sidebar-vote">
+    <div class="box">
+      <div class="popup-box">
+        <span class="ico">&nbsp;</span>
+        <div class="close-area">
+          <a href="#" id="close-vote-popup" class="close">&times;</a>
+        </div>
+        <div class="boxover">
+          <div class="sidebar-header">VOTE</div>
+          <div class="votebox">
+            Please vote.
+            <div id="vote-up">
+              Vote UP<br><br>
+              <%= form_for(@issue_vote) do |f| %>
+                <%= f.hidden_field "issue_vote_id", :value => @issue.id %>
+                <%= f.hidden_field "up_or_down", :value => "up" %>
+                <%= image_submit_tag "issue_up.png" %>
+              <% end %>
+              <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @issue_vote_percent_up %><br><br><br>
+            </div>
+            <div id="vote-down">
+              Vote Down<br><br>
+              <%= form_for(@issue_vote) do |f| %>
+                <%= f.hidden_field "issue_vote_id", :value => @issue.id %>
+                <%= f.hidden_field "up_or_down", :value => "down" %>
+                <%= image_submit_tag "issue_down.png" %>
+              <% end %>
+              <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @issue_vote_percent_down %><br><br><br>
+            </div>
+          </div>
+          <div class="holder">
+            <h3>About Voting</h3>
+            Paragraph about voting.<br><br>
+            Percent for: <%= @vote_percent = number_to_percentage(@issue_vote_percent_up.to_f / @vote_total * 100, :precision => 0 )%><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="info-sidebar">
+    <div class="box">
+      <div class="sidebar-header"><%= t('issues.sidebar.headings.internal-links') %></div>
+      <ul class="links-list">
+        <% @issue.issues.each do |issue| %>
+          <li>
+            <%= link_to issue_path(issue) do %>
+              <%= image_tag issue.image.thumb, class: 'publisher_image' %>
+              <%= issue.title %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="box">
+      <div class="sidebar-header">Elsewhere online</div>
+        <ul class="links-list" id="newsList" data-id="<%= @issue.id %>">
+        </ul>
+    </div>
+
+    <div class="box">
+      <div class="sidebar-header"><%= t('issues.sidebar.headings.tags') %></div>
+      <ul class="tags-list">
+        <%= raw @issue.tags.map {|tag| content_tag(:li, link_to(tag.name, tag_path(tag.name))) }.join(', ') %>
+      </ul>
+    </div>
+
+    <div class="box">
+      <div class="sidebar-header">Edits &amp; Contributors</div>
+      <ul class="author-list">
+        <% @issue.contributors.each do |user| %>
+          <li>
+            <span class="ico">
+              <%= link_to(image_tag(user.avatar.thumb.url, width: 47, height:46), user_path(user)) %>
+            </span>
+            <div class="info">
+              <strong class="name"><%= link_to user.name, user_path(user) %></strong>
+              <strong class="text"><%= user.bio_headline %></strong>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+      <div class="edit-box">
+        <% if @issue.last_edit_by %>
+          <div class="date-box">
+            <strong class="date">Last edit: <%= l @issue.updated_at, :format => :edited %></strong>
+            <strong class="by">By: <%= link_to @issue.last_edit_by.try(:name), user_path(@issue.last_edit_by) %></strong>
+          </div>
+        <% end %>
+        <div class="ratings">
+          <br>
+          <div class="sidebar-header">How good is this page?</div>
+          <%= rating_box(@issue) %>
+          <span id="issueRatingsMade">
+            <% if @ratings_count >= 1 %>
+              Average: <%= number_with_precision(@avg, :precision => 1) %><br>
+            <% end %>
+          </span>
+        </div>
+        <ul class="links">
+          <li><%= link_to 'Download PDF', issue_path(@issue, format: :pdf) %></li>
+          <li><%= link_to 'Page history', history_issue_path(@issue) %></li>
+          <li><%= link_to t('issues.edit-this-page-link'), edit_issue_path(@issue), class: "btn btn-blue", id: force_login_dialog_id %></li>
+          <%= render partial: "highlight_broken_links" %>
+        </ul>
+      </div>
+    </div>
+
+
+  </div>
+<% end %>

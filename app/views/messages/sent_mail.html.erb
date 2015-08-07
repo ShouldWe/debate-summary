@@ -1,0 +1,24 @@
+<section class="messageContainer" data-pjax-container="true">
+  <header>
+    <h2>Sent Messages</h2>
+    <p>Displaying <%= @messages.size %> out of <%= pluralize @total_message_size, "message", "messages" %>.</p>
+    <%= link_to "Inbox", mailbox_path, class: "btn btn-blue" %>
+  </header>
+  
+  <ul>
+    <% @messages.each do |message| %>
+      <li class="<%= message.status %>">
+        <span class="title"><%= link_to message.title, message %><br>
+          to <%= link_to message.recipient.name, message.recipient, class: "sender" %>
+        </span>
+        <span class="preview">
+          <%= message.excerpt %>
+        </span>
+        <span class="timestamp">
+          <%= time_tag message.created_at, class: "timeago" %>
+        </span>
+        <div class="clearfix"></div>
+      </li>
+    <% end %>
+  </ul>
+</section>

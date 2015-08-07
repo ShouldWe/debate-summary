@@ -1,0 +1,10 @@
+<%= semantic_form_for(@issue, url: set_slug_controlpanel_issue_path(@issue), method: :put ) do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :tmp_slug, label: 'Title to use for the slug' %>
+    <%= f.input :overwrite_slug, as: :boolean, hint: 'Overwriting a slug will cause the old slug to become a dead link.' %>
+  <% end %>
+  <%= f.actions do %>
+    <%= submit_tag 'Save Slug' %>
+  <% end %>
+<% end %>
+

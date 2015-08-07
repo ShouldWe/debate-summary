@@ -1,0 +1,52 @@
+<div class="area-boxes">
+  <div class="area-box alpha">
+    <div class="area-container">
+      <div class="area-header">Yes:</div>
+
+      <%= render partial: "form_argument", :collection => @detail_fors %>
+
+      <div class="area-footer clearfix">
+        <button type="button" class="btn btn-blue pull-right new-argument">New argument</button>
+      </div>
+    </div>
+
+  </div>
+  <div class="area-box omega">
+    <div class="area-container">
+      <div class="area-header">No:</div>
+      <%= render partial: "form_argument", :collection => @detail_againsts %>
+
+      <div class="area-footer clearfix">
+        <button type="button" class="btn btn-blue pull-right new-argument">New argument</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="area-boxes">
+  <div class="area-box">
+    <div class="area-container">
+      <div class="area-header"><%= t('detail_alternatives', scope: 'activerecord.attributes.issue') %>:</div>
+
+      <%= render partial: "form_argument", :collection => @detail_alternatives %>
+
+      <div class="area-footer clearfix">
+        <button type="button" class="btn btn-blue pull-right new-argument">New argument</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="area-boxes">
+  <div class="area-box">
+    <div class="area-container">
+      <div class="area-header"><%= t('detail_data', scope: 'activerecord.attributes.issue') %>:</div>
+
+      <%= render partial: "form_argument", :collection => @detail_relevants %>
+
+      <div class="area-footer clearfix">
+        <button type="button" class="btn btn-blue pull-right new-argument">New argument</button>
+      </div>
+    </div>
+  </div>
+</div>

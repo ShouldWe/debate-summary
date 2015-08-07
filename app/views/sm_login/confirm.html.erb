@@ -1,0 +1,18 @@
+<section id="userEditContainer" class="messageContainer">
+
+  <article id="profileDetails" class='account-section'>
+    <%= semantic_form_for(@current_user, url: sm_login_confirm_path, html: { class: 'form-vertical' }) do |f| %>
+      <%= hidden_field_tag :id, @current_user.id %>
+
+      <%= f.inputs name: false do %>
+        <%= f.input :name %>
+        <%= f.input :email %>
+      <% end %>
+
+      <%= f.actions do %>
+        <%= f.action :submit, label: "Confirm your details", as: :button, button_html: {class: "btn btn-blue overridefont", style: "margin-top: 15px"} %>
+      <% end %>
+    <% end %>
+  </article>
+
+</section>

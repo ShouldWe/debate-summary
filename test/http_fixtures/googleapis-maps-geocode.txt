@@ -1,0 +1,16 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Date: Fri, 11 Apr 2014 09:50:07 GMT
+Expires: Sat, 12 Apr 2014 09:50:07 GMT
+Cache-Control: public, max-age=86400
+Access-Control-Allow-Origin: *
+Server: mafe
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+Alternate-Protocol: 80:quic
+Transfer-Encoding: chunked
+
+{
+   "results" : [],
+   "status" : "ZERO_RESULTS"
+}

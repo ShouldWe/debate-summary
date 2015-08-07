@@ -1,0 +1,113 @@
+<section id="userEditContainer" class="messageContainer">
+  <header>
+    <h2>My Account</h2>
+  </header>
+  
+  <aside>
+    <h3>Options</h3>
+    <ul class="basic">
+        <li><%= link_to "Profile Details", "#", data: {target: "profileDetails"} %></li>
+        <li><%= link_to "Status", "#", data: {target: "status"} %></li>
+        <li><%= link_to "Notifications", "#", data: {target: "notifications"} %></li>
+    </ul>
+    <div id="expt"> 
+      <%= link_to "View Account History", @user%>
+    </div>
+  </aside>
+  <article id="profileDetails" class='account-section'>
+    <h3>Profile Details</h3>
+    <% if flash[:error] %>
+      <p>Error: <%= flash[:error] %></p>
+    <% end  %>
+    <%= semantic_form_for(@user, url: profile_path, html: { class: 'form-vertical', multipart: true }) do |f| %>
+      <%= f.inputs name: false do %>
+		    <%= f.input :name %>
+        <%= f.input :email %>
+        <%= f.input :bio_headline %>
+      <%= f.input :bio, :as => :text %>
+        <div id="avatarButton">
+          <button type="button" class=" btn btn-blue overridefont">Upload a profile picture</button>
+          <%= f.file_field :avatar %>
+      </div>
+        <%= f.hidden_field :avatar_cache %>
+      <% end %>
+      <%= f.actions do %>
+        <%= f.action :submit, label: "Save Changes", as: :button, button_html: {class: "btn btn-blue overridefont", style: "margin-top: 15px"} %>
+      <% end %>
+    <%end %>
+	<div class="avatarPic">
+		<% if current_user.avatar.display.url == "/assets/fallback/display_default-f758333c230208ce5aad6a9fa9dfb4e8.png" %>
+			</br></br>No profile picture
+		<% else %>
+			<%= image_tag current_user.avatar.display.url %>
+		<% end %>
+	</div>
+	
+  </article>
+  <article id="status" class='account-section'><h3>Status</h3>
+
+
+    <% if current_user.facebook_token.nil? %>
+      <p><%= link_to fa_icon("facebook-square", text: "Switch to Facebook"), user_omniauth_authorize_path(:facebook), class: 'fa-2x' %></p>
+    <% else %>
+      <p class="fa-2x"><%= fa_icon("facebook-square f", text: 'Using Facebook')%></p>
+      <% unless current_user.facebook_token.nil? %>
+        <p>facebook friends: <%= current_user.facebook_friend_count %></p>
+      <% end %>
+    <% end %>
+
+    <% if current_user.twitter_token.nil? %>
+      <p><%= link_to fa_icon("twitter-square", text: "Switch to Twitter"), user_omniauth_authorize_path(:twitter), class: 'fa-2x' %></p>
+    <% else %>
+      <p class="fa-2x"><%= fa_icon("twitter-square", text: 'Using Twitter')%></p>
+      <% unless current_user.twitter_token.nil? %>
+        <p>twitter followers: <%= current_user.twitter_follower_count %></p>
+      <% end %>
+    <% end %>
+
+    <% if current_user.linkedin_token.nil? %>
+      <p><%= link_to fa_icon("linkedin-square", text: "Switch to LinkedIn"), user_omniauth_authorize_path(:linkedin), class: 'fa-2x' %></p>
+    <% else %>
+      <p class="fa-2x"><%= fa_icon("linkedin-square", text: 'Using LinkedIn')%></p>
+      <% unless current_user.linkedin_token.nil? %>
+        <p>linkedin connections: <%= current_user.linkedin_connections_count.to_s %></p>
+      <% end %>
+    <% end %>
+
+	</br></br>
+	
+	<h3>What is a Monitor?</h3><p>A Monitor is a user who has the ability to resolve disputes with edits to issues.</p></br>
+    You are set as a:
+    <% if @user.is_monitor? == true %> <!-- change endorsed to monitor  -->
+      Monitor</br>
+    <% else %>
+      Normal User</br>
+    <%end %>
+
+  <br/>
+  </article>
+  
+  <article id="notifications" class='account-section'>
+    <h3>Your Notification Settings: Notify me when somebody</h3>
+      <%= semantic_form_for(@user, url: profile_path, html: { class: 'form-vertical' }) do |f| %>
+        <h4>Edits a page I have edited</h4>
+        <%= notification_select_tags_for :page, @user.notification_preferences.page, UserNotificationPrefs::Frequency  %>
+        <div class="clearfix"></div>
+        <h4>Edits a section I have edited</h4>
+        <%= notification_select_tags_for :section, @user.notification_preferences.section, UserNotificationPrefs::Frequency  %>
+        <div class="clearfix"></div>
+        <h4>Comments on an edit I made</h4>
+        <%= notification_select_tags_for :comments_edit_i_made, @user.notification_preferences.comments_edit_i_made, UserNotificationPrefs::Frequency  %>
+        <div class="clearfix"></div>
+        <h4>Comments on an edit I commented on</h4>
+        <%= notification_select_tags_for :comments_edit_i_commented, @user.notification_preferences.comments_edit_i_commented, UserNotificationPrefs::Frequency  %>
+        <div class="clearfix"></div>
+        <%= f.actions do %>
+          <%= f.action :submit, label: "Save Notification Settings", as: :button, button_html: {class: "btn btn-blue overridefont", style: "margin-top: 15px"} %>
+        <% end %>
+      <% end %>
+  </article>
+
+</section>
+
+

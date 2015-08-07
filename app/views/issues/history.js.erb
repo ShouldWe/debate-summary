@@ -1,0 +1,8 @@
+<% if @activity_page && @activity_page.length > 0 %>
+  $('#activities').append('<%= j render(partial: "issues/activity.html.erb", collection: @activity_page ) %>');
+  document.loadingActivity = false
+<% end %>
+<% unless @activities[@pagination_to + 1]  %>
+  document.pageNum = -1
+  $('#scrollForMore').html("No more edits to see")
+<% end %>

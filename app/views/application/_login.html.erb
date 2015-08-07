@@ -1,0 +1,31 @@
+<div class="modal hide fade" id="loginModal">
+  <div class="modal-header">
+    <h3 style="font-size:18px;font-weight:bold;">Sign In</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_for(resource, :url => session_path(resource_name)) do |f| %>
+      <div class="span3">
+        <p>
+          <%= f.label :email %><br>
+          <%= f.text_field :email %>
+        </p>
+
+        <p>
+          <%= f.label :password %><br>
+          <%= f.password_field :password %>
+        </p>
+
+        <% if devise_mapping.rememberable? -%>
+          <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+        <% end -%>
+      </div>
+  </div>
+  <div class="modal-footer">
+      <p>
+        <%= link_to "Register", new_user_registration_path, class: "btn", id: "registerLink" %>
+        <%= f.submit "Sign in", class: "btn btn-blue" %>
+      </p>
+      <% end %>
+  </div>
+</div>
+<div class="modal-backdrop hide fade"></div>

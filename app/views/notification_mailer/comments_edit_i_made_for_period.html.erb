@@ -1,0 +1,7 @@
+<p>Here's some activity you may have missed on Debate Summary</p>
+
+<%- @report.each_pair do |issue, activities| %>
+  <hr>
+  <h3><%= link_to(issue.title, polymorphic_url(issue)) %></h3>
+  <%= render partial: 'activity', collection: activities %>
+<%- end %>

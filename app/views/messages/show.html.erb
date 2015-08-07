@@ -1,0 +1,13 @@
+<section class="messageContainer show" data-pjax-container="true">
+  <header>
+    <h2>Notification</h2>
+    <p>At <%= time_tag @message.created_at, class: "timeago" %>.</p>
+    <%= link_to "Back", :back, class: "btn btn-blue" %>
+  </header>
+  
+  <article>
+    <h3>Message:</h3>
+    <%= simple_format @message.content %>
+  </article>
+
+</section>

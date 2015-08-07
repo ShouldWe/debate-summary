@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html class="no-js" prefix="og: http://ogp.me/ns#" lang="en-gb">
+  <head>
+    <%= render partial: '/layouts/core_head', locals: { stylesheet: 'errors' } %>
+  </head>
+  <body>
+    <%= yield %>
+    <%= javascript_include_tag 'errors' %>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+<% if @issue.broken_shas.any? %>
+  <li>This page contains broken links, <a href="#" onclick="$(document).trigger('toggleBrokenLinks');return false;" id="brokenLinkToggle">Show broken links</a></li>
+<% end %>
+
+<script type="text/javascript">
+  if(!window.brokenLinks){
+    window.brokenLinks = {
+      shas: [],
+      showNow: false
+    };
+  }
+  window.brokenLinks.shas = <%= @issue.broken_shas.to_json.html_safe %>;
+
+  <% if current_page?(:action => 'edit') %>
+      window.brokenLinks.showNow = true;
+  <% end %>
+</script>

@@ -1,0 +1,11 @@
+<div class="comment-box">
+  <%= image_tag comment.get_user.avatar.thumb.url, class: 'ico', width: 30, height: 30 %>
+  <div class="info">
+    <div class="infoSub"><%= link_to comment.get_user.name, (comment.user ? user_path(comment.get_user) : '') %></div>
+    <div class="infoSub"><%= comment.get_user.bio_headline %></div>
+    <div class="infoSub"><%= comment.created_at.strftime("%-e %b %Y, %H:%M") %></div>
+  </div>
+  <div class="infoBody">
+      <%= simple_format comment.body %>
+  </div>
+</div>

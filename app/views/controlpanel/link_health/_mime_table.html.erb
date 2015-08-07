@@ -1,0 +1,12 @@
+<table>
+<tr>
+  <th>Mime</th>
+  <th>Count</th>
+</tr>
+<% items.each do |mime| %>
+  <tr>
+    <td><%= mime.first || 'none' %></td>
+    <td><%= mime.last.size %></td>
+  </tr>
+<% end %>
+</table>

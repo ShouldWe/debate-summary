@@ -1,0 +1,61 @@
+<% content_for(:title, @user.name) %>
+<div id="userProfileContainer">
+	<div id="userSidebar">
+		<div id="userThumbnail">
+			<%= image_tag @user.avatar.display.url, class: "profile", width: 270 %>
+		</div>
+		<div id="userStats">
+			<h3>Member Stats</h3>
+			<dl id="detailLinks">
+				<dt>Last Seen:</dt>
+				<dd><%= time_tag @user.updated_at %></dd>
+				<div class="clearfix"></div>
+				<dt>Issues Started:</dt>
+				<dd><%= @user.issues.count %></dd>
+				<div class="clearfix"></div>
+				<dt>Comments Made:</dt>
+				<dd><%= @user.comments.count %></dd>
+				<div class="clearfix"></div>
+				<dt>Average Rating Given:</dt>
+				<dd><%= number_with_precision(@user.ratings.average(:score), :precision => 1) %></dd>
+				<div class="clearfix"></div>
+			</dl>
+
+			<% if current_user && current_user.is_monitor? && current_user.name != @user.name %>
+        <h3>Monitor</h3>
+
+        <%= form_for @user, url: user_set_monitor_path(@user) do |f| %>
+          <%= f.select :monitors, options_for_select([['No', 'false'],['Yes', 'normal']], :selected => @user.monitors) %>
+          <%= f.submit "Go" %>
+        <% end %>
+      <% end %>
+		</div>
+	</div>
+	<div id="userDetails">
+		<div id="userHeadline">
+			<h2><%= @user.name %>
+			<% if @user.bio_headline.present? %>
+			  <br><small><%= @user.bio_headline %></small>
+			<% end %>
+			</h2>
+		</div>
+	
+		<div id="userBio">
+			<%= auto_link(markdown(sanitize(@user.bio))) %>
+		</div>
+		
+		<div id="userDisplay">
+			<div class="content">
+				<div class="pane" id="contributions">
+          <h3>Recent Activity</h3>
+					<ol>
+						<% @activities.each do |act| %>
+						<% next unless act.issue %><li><%= time_tag act.created_at, class: "activity_timestamp" %> <%= @user.first_name %> <%= act.activity_was %> <%= link_to act.issue.try(:title), act.issue%></li>
+						<% end %>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<%= render 'messageModal' %>

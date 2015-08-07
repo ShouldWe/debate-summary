@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Debate Summary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <script>
+    Bugsnag.releaseStage = "<%= Rails.env %>";
+    Bugsnag.notifyReleaseStages = ["staging", "production"];
+  </script>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <!--[if lt IE 7]><script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js"></script><![endif]-->
+  <!--[if lt IE 8]><script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script><![endif]-->
+  <!--[if lt IE 9]><script type="text/javascript" src="/js/respond.min.js"></script><![endif]-->
+  <%= csrf_meta_tags %>
+  <%= opengraph_meta_tags %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag 'modernizr.min' %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>

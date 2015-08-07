@@ -1,0 +1,11 @@
+<%= simple_form_for rule_break_report_vote, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.hidden_field :id %>
+  <%= f.hidden_field :rule_break_report_id %>
+  <%= f.hidden_field :user_id %>
+  <%= f.input :penalty_id, :label => "Penalty&nbsp;&nbsp;&nbsp;&nbsp;", :collection => Penalty.all, :as => :select, :include_blank => false %>
+  </br>
+  <%= f.input :apply_unilaterally %>
+</br>
+    <%= f.button :submit, 'Vote', :class => 'btn-blue btn' %>
+			</br></br>
+<% end %>

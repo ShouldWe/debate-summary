@@ -1,0 +1,18 @@
+<% if issues.empty? %>
+  <b>No results</b>
+<% else %>
+  <table>
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+  </tr>
+  <% issues.each do |i| %>
+    <tr>
+      <td><%= i.id %></td>
+      <td><%= link_to i.title, i %></td>
+    </tr>
+  <% end %>
+</table>
+<% end %>
+
+<%= paginate issues %>

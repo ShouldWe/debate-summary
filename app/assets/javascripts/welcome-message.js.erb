@@ -1,0 +1,13 @@
+(function () {
+  'use strict';
+  if(!localStorage.hasOwnProperty('cookiePolicyAccepted')) {
+    var elm = bootbox.alert(window.welcomeMessage, 'Ok, got it', function (){
+      localStorage.setItem('cookiePolicyAccepted',true);
+      var elms = document.getElementsByClassName('modal-backdrop');
+      for(var i=0; i< elms.length; i++) {
+        elms[i].parentNode.removeChild(elms[i]);
+      }
+    });
+    elm.addClass('welcome-modal');
+  }
+}).call(this);

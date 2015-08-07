@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th>Issue</th>
+      <th>Tags</th>
+      <th width="100">How good is this page</th>
+      <th>Views in last day</th>
+      <th>Views in last week</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @issues.each do |issue| %>
+      <tr>
+        <td><%= link_to issue.title, issue %></td>
+        <td>
+          <% issue.tags.each do |item| %>
+            <%= link_to(item.name, tag_path(item)) %>
+          <% end %>
+        </td>
+        <td align=center>
+          <%= rating_stars_icons(issue.rating_score) %>
+          <%= issue.rating_score %>
+        </td>
+        <td><%= issue.views_in_last(:day) %></td>
+        <td><%= issue.views_in_last(:week) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

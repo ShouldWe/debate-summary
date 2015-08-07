@@ -1,0 +1,59 @@
+<% if detail.title %>
+<div class="title_box">
+	<h2 class="detail_title"><a name="<%= detail.title %>"><%= detail.title %></a></h2>
+	<div class=issue_vote_box>
+
+		<%= form_for(@issue_vote) do |f| %>
+			<%= f.hidden_field "issue_vote_id", :value => @issue.id %>
+			<%= f.hidden_field "up_or_down", :value => "up" %>
+			<%= f.hidden_field "yes_or_no", :value => detail.detail_type %>
+			<%= f.hidden_field "detail_id", :value => detail.id %>
+			<% if @issue_detail_for.present? && @issue_detail_against.present? %>
+				<% if detail.id == @issue_detail_for.detail_id %>
+					<%= image_tag "thumbs_up_on.png", :style => "width:25px;height: 25px", :class => "issue_vote_box_image" %>
+				<% elsif detail.id == @issue_detail_against.detail_id %>
+					<%= image_tag "thumbs_up_on.png", :style => "width:25px;height: 25px", :class => "issue_vote_box_image" %>
+				<% else %>
+					<%= image_submit_tag "thumbs_up_off.png", :style => "width:25px;height: 25px", :class => "issue_vote_box_image" %>
+				<% end %>
+			<% elsif @issue_detail_for.present? %>
+				<% if detail.id == @issue_detail_for.detail_id %>
+					<%= image_tag "thumbs_up_on.png", :style => "width:25px;height: 25px", :class => "issue_vote_box_image" %>
+				<% else %>
+					<%= image_submit_tag "thumbs_up_off.png", :style => "width:25px;height: 25px", :class => "issue_vote_box_image" %>
+				<% end %>
+			<% elsif @issue_detail_against.present? %>
+				<% if detail.id == @issue_detail_against.detail_id %>
+					<%= image_tag "thumbs_up_on.png", :style => "width:25px;height: 25px", :class => "issue_vote_box_image" %>
+				<% else %>
+					<%= image_submit_tag "thumbs_up_off.png", :style => "width:25px;height: 25px", :class => "issue_vote_box_image" %>
+				<% end %>
+			<% else %>
+				<%= image_submit_tag "thumbs_up_off.png", :style => "width:25px;height: 25px", :class => "issue_vote_box_image" %>
+			<% end %>
+		<% end %>
+		<div class="issue_vote_box_text">
+			<% @issue_detail_count = 0 %>
+			<% @issue_vote_count.each do |i| %>
+				<% if i.detail_id == detail.id %>
+					<% @issue_detail_count += 1 %>
+				<% end %>
+			<% end %>
+			<%= @issue_detail_count %>
+			<!-- number_to_human(@issue_detail_count, :units => {:thousand => "K"}).gsub(/ /,'') %> -->
+		</div>
+		<br/><br/><br/>
+	</div>
+</div>
+<% end %>
+<% @issue_detail_count = "" %>
+<!-- <span class="bubble">&nbsp;</span> -->
+<div class="detail_body"><a name="<%= detail.id %>"></a><div class="datafileid" data-file='<%=statement_path( detail.id)%>'  data-file-comment-number='<%=comment_number(detail.id)%>'></div>
+	<%= detail.body.html_safe %>
+</div>
+<!-- <% detail.statements.order('position').each do |statement| %>
+  <span class="statement detail_<%= statement.id -%>">
+    <%= statement.body %>&nbsp;
+  </span>
+<% end %> -->
+<br /><br />

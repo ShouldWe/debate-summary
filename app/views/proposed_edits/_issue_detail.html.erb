@@ -1,0 +1,18 @@
+<p>
+  <strong><%= issue_detail_counter + 1 -%>) <%= issue_detail.title %></strong>
+  <% if @proposed_edit.editable_type == "Detail" && @proposed_edit.editable_id == issue_detail.id %>
+    <% new_title = YAML::load(@proposed_edit.title)[1] if @proposed_edit.title %>
+    <br />
+    <span class="proposed_edit"><strong><%= issue_detail_counter + 1 -%>) <%= new_title %></strong></span>
+    <br />
+  <% end %>
+  <%= render :partial => 'statement', :collection => issue_detail.statements.without_image %>
+</p>
+<div style="float:right">
+  <% issue_detail.statements.with_image.each do |statement_image| %>
+    <p>
+      <%= statement_image.body %><br />
+      <%= image_tag(statement_image.image.thumb.url) %>
+    </p>
+  <% end %>
+</div>

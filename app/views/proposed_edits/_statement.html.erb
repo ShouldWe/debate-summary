@@ -1,0 +1,16 @@
+<%= "</p><p>".html_safe if statement.new_paragraph %>
+<span class="statement detail_<%= statement.id -%>">
+  <%= statement.body %>&nbsp;
+</span>
+<% if @proposed_edit.editable_type == "Statement" && @proposed_edit.editable_id == statement.id %>
+  <% new_name = YAML::load(@proposed_edit.name)[1] if @proposed_edit.name %>
+  <% new_body = YAML::load(@proposed_edit.body)[1] if @proposed_edit.body %>
+  <% new_source = YAML::load(@proposed_edit.source)[1] if @proposed_edit.source %>
+  <br />
+  <span class="statement detail_<%= statement.id -%> proposed_edit">
+    <% if new_name %>(<em><%= new_name %></em>)<% end %>
+    <% if new_body %><%= new_body %><% end %>
+    <% if new_source %>[<%= new_source %>]<% end %>
+  </span>
+  <br />
+<% end %>
