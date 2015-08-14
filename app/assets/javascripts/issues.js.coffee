@@ -593,7 +593,7 @@ jQuery ->
       dataType: 'json'
       url:"/api/issues/#{id}/other_sources"
       headers:
-        'Authorization': 'Basic c2hvdWxkd2U6dHVlc2RheSFyZWQzMg=='
+        'Authorization': 'Basic ZGViYXRlLXN1bW1hcnk6c2VjcmV0cGFzc3dvcmQ='
     ).success((response)->
       $.each(response, (index, item)->
         if(index < 4)
