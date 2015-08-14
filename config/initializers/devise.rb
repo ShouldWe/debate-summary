@@ -230,10 +230,10 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
-  if ENV['FIXIE_URL']
+  if ENV['FIXIE_URL'] || ENV['PROXIMO_URL']
     client_options = {
       connection_opts: {
-        proxy: "http://127.0.0.1:3128"
+        proxy: ENV['FIXIE_URL'] || ENV['PROXIMO_URL']
       }
     }
   end

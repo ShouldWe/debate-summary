@@ -131,7 +131,7 @@ Here is a quick example to get Debate Summary deployed on a heroku instance.
     heroku pg:psql <db/structure.sql
     heroku run rake --trace db:migrate db:seed
 
-Be aware:  [Heroku and Facebook do not play great together](http://stackoverflow.com/questions/16086615/5-unauthorized-source-ip-address-error-on-heroku-rails-app) that is why [Fixie](https://elements.heroku.com/addons/fixie) is used in this example.
+Be aware:  [Heroku and Facebook do not play great together](http://stackoverflow.com/questions/16086615/5-unauthorized-source-ip-address-error-on-heroku-rails-app) that is why [Fixie](https://elements.heroku.com/addons/fixie) or [Proximo](https://elements.heroku.com/addons/proximo) could be used in this example.
 
 ## License
 
