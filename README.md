@@ -126,9 +126,11 @@ Here is a quick example to get Debate Summary deployed on a heroku instance.
 *Note: Replace the `heroku config:set` with your own Environment variables*
 
     heroku create --buildpack https://github.com/heroku/heroku-buildpack-ruby
-    heroku config:set FACEBOOK_API_KEY= FACEBOOK_SECRET_KEY= TWITTER_API_KEY= TWITTER_API_SECRET= LINKEDIN_API_KEY= LINKEDIN_SECRET_KEY= SMTP_ADDRESS=smtp.mandrillapp.com SMTP_USERNAME= SMTP_PASSWORD= AWS_REGION=us-east-1 AWS_ACCESS_KEY_ID= AWS_SECRET_ACCESS_KEY= AZURE_DATAMARKET_API_KEY=
+    heroku config:set FACEBOOK_API_KEY= FACEBOOK_API_SECRET= TWITTER_API_KEY= TWITTER_API_SECRET= LINKEDIN_API_KEY= LINKEDIN_API_SECRET= SMTP_ADDRESS=smtp.mandrillapp.com SMTP_USERNAME= SMTP_PASSWORD= AWS_REGION=us-east-1 AWS_ACCESS_KEY_ID= AWS_SECRET_ACCESS_KEY= AZURE_DATAMARKET_API_KEY=
     heroku pg:psql <db/structure.sql
     heroku run rake --trace db:migrate db:seed
+
+Be aware,  [Heroku and Facebook do not play great together](http://stackoverflow.com/questions/16086615/5-unauthorized-source-ip-address-error-on-heroku-rails-app).
 
 ## License
 
