@@ -51,7 +51,7 @@ You will need to define the following environment variables in your bash config 
 
     export AZURE_DATAMARKET_API_KEY=XXXXXXXXXX
     export AWS_REGION=us-east-1
-    export AWS_ACCESS_KEY_ID=XXXXXXXXXX
+    export AWS_ACCESS_KEY_IDXXXXXXXXXX
     export AWS_SECRET_ACCESS_KEY=XXXXXXXXXX
     export SMTP_ADDRESS=smtp.mandrillapp.com
     export SMTP_USERNAME=example
@@ -116,6 +116,19 @@ Testem is the main runtime that runs JavaScript unit tests.
     ./node_modules/.bin/testem
 
 [Test'em][testem] will boot you can connect any browser with [Testem][testem] using [http://localhost:7357](http://localhost:7357)
+
+## Deploying
+
+### Heroku
+
+Here is a quick example to get Debate Summary deployed on a heroku instance.
+
+*Note: Replace the `heroku config:set` with your own Environment variables*
+
+    heroku create --buildpack https://github.com/heroku/heroku-buildpack-ruby
+    heroku config:set FACEBOOK_APP_KEY= FACEBOOK_SECRET_KEY= TWITTER_API_KEY= TWITTER_API_SECRET= LINKEDIN_APP_KEY= LINKEDIN_SECRET_KEY= SMTP_ADDRESS=smtp.mandrillapp.com SMTP_USERNAME= SMTP_PASSWORD= AWS_REGION=us-east-1 AWS_ACCESS_KEY_ID= AWS_SECRET_ACCESS_KEY= AZURE_DATAMARKET_API_KEY=
+    heroku pg:psql <db/structure.sql
+    heroku run rake --trace db:migrate db:seed
 
 ## License
 
