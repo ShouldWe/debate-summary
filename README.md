@@ -79,6 +79,16 @@ You'll need to enable `unaccent` extension on the database:
 
 This should enable full text search.
 
+### Administrator Setup
+
+After successfully logging in via one of the OAuth providers, you should be able to set your user as admin in the `rails console`.
+
+    u = User.first
+    u.admin = true
+    u.save!
+
+Now this user will see a "Control Panel" option on navigation dropdown.
+
 ## Developing
 
 Use invoker to start PostgreSQL, Redis and the Application development environment
