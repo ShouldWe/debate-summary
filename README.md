@@ -7,6 +7,7 @@ Debate Summary is open-sourced version of [ShouldWe](http://www.shouldwe.org), f
 ## Prerequisites
 
 * [PostgreSQL 9.3](http://www.postgresql.org/) - Production Database storage
+* [Redis](http://redis.io/) - Key-value store database
 * [Node.js][node.js] - Assets compilation and JavaScript Testing
 * [Ruby 1.9.3-p194][ruby] - Ruby Language
 * [Bundler 1.2](http://gembundler.com/v1.2/) - Application Dependancies management
@@ -17,7 +18,7 @@ Debate Summary is open-sourced version of [ShouldWe](http://www.shouldwe.org), f
 
 ## Quick Setup (Mac OS X)
 ```
-brew install postgresql nodejs phantomjs rbenv ruby-build
+brew install postgresql nodejs phantomjs rbenv ruby-build redis
 
 ruby_build 1.9.3-p194 ~/.rbenv/versions/1.9.3-p194
 rbenv rehash
@@ -61,6 +62,13 @@ You will need to define the following environment variables in your bash config 
     export TWITTER_API_SECRET=XXXXXXXXXX
     export LINKEDIN_API_KEY=XXXXXXXXXX
     export LINKEDIN_API_SECRET=XXXXXXXXXX
+    export REDIS_URL=redis://localhost:6379/0
+
+The OAuth callback url's are:
+
+* http://{DEBATE_SUMMARY_URL}/users/auth/linkedin/callback
+* http://{DEBATE_SUMMARY_URL}/users/auth/twitter/callback
+* http://{DEBATE_SUMMARY_URL}/users/auth/facebook/callback
 
 ### PostgreSQL Setup
 
