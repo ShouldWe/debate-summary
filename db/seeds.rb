@@ -24,10 +24,76 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
+Page.destroy_all
 Template.destroy_all
-templates = Template.create([
-  {title: 'welcome email', slug: 'welcome-email'},
-  {title: 'About', slug: 'about', body: <<-EOF
+Template.create([
+  {title: 'Welcome Email', slug: 'welcome-email', content: <<-EOF
+<h1>Welcome to Debate Summary, {{user.name}}</h1>
+<p>
+You have successfully signed up to ShouldWe.
+</p>
+<p>
+To login to the site, just follow this link: {{url}}.
+</p>
+<p>Thanks for joining and have a great day!</p>
+  EOF
+},
+
+
+{title: 'Expert Welcome Email', slug: 'expert-welcome-email', content: <<-EOF
+<h1>You've been appointed as an Expert</h1>
+<p>You've been made an expert for the Issue "{{issue.title}}", this means you can do the following:</p>
+<p>You can view the issue at this link: <a href="{{issue.url}}">{{issue.title}}</a>.</p>
+EOF
+},
+
+
+
+
+
+{title: 'Endorse Email', slug: 'endorse-email', content: <<-EOF
+<h1>You've been invited to become an endorsed member of Debate Summary</h1>
+<p>You've been invited to become an endorsed member "{{user.name}}", this means you have been approved to become have editor abilities.</p>
+<p>You should <a href="{{url}}">sign up</a> today.</p>
+EOF
+},
+
+
+{title: 'Unendorsed Email', slug: 'unendorse-email', content: <<-EOF
+Unendorsed Email body
+EOF
+},
+
+
+
+{title: 'Alleged abuser decision made email', slug: 'alleged-abuser-decision-made-email', content: <<-EOF
+<p>Dear {{user.name}}</p>
+<p>There has been a complaint that you broke the house rules when you edited {{ issue_url }}</p>
+<p>The rules broken were:</p>
+{{ broken_rules }}
+<p>The Debate Summary moderators have investigated the complaint and have decided on the response: {{rule_break_report.penalty_name}}</p>
+<p>This is an automatic email</p>
+EOF
+},
+
+
+{title: 'Abuse Reported', slug: 'abuse-reported', content: <<-EOF
+<p>
+There is a new allegation of abuse. Please see {{rule_break_report_votes_url}}
+</p>
+EOF
+},
+
+
+{title: 'Notification Subscription Created', slug: 'notification-subscription-created', content: <<-EOF
+<p>Dear {{user.first_name}},</p>
+
+<p>You have been subscribed to notifications on activity for the issue {{issue.title}} that you contributed to. If you would like to change your preferences about how often we notify you of new activity, or turn them off altogether, please go to {{user.account_link}}.</p>
+EOF
+}
+])
+Page.create([
+  {title: 'About', permalink: 'about', markdown: <<-EOF
 ## About us
 
 Debate Summary is a open-source version of ShouldWe. A non-partisan, crowd-sourced online guide to public policy debates and evidence.
@@ -65,7 +131,7 @@ EOF
 
 
 
-  {title: 'Style Guide', slug: 'style-guide', body: <<-EOF
+  {title: 'Style Guide', permalink: 'style-guide', markdown: <<-EOF
 ## Creating a Debate Summary page
 
 Thanks so much for creating or editing a Debate Summary page. This should tell you everything you need to know, but if anything isn’t clear please let us know at hello@Debate Summary.org.
@@ -78,7 +144,7 @@ Login / sign up using your Twitter, Facebook or LinkedIn profile. When you first
 
 **Step 2:**
 
-Decide what you’re going to call your page. It should start Debate Summary …? The ‘we’ in question should be a specific public body, ideally the UK government. The question can be about creating, or abolishing, or reinstating something and should reflect a public policy proposition currently being debated by policy-makers or an idea being proposed by a think tank, charity, university, research institute or political party. The question should be phrased neutrally (e.g. ‘Debate Summary introduce the Alternative Vote for UK General Elections?’ not ‘Should we have fair votes?’). Use the search function on Debate Summary's home page to see if there's already a page on your chosen topic.  If there isn't, click the "...or create a new issue" option at the bottom of the search results.
+Decide what you’re going to call your page. It should start Debate Summary …? The ‘we’ in question should be a specific public markdown, ideally the UK government. The question can be about creating, or abolishing, or reinstating something and should reflect a public policy proposition currently being debated by policy-makers or an idea being proposed by a think tank, charity, university, research institute or political party. The question should be phrased neutrally (e.g. ‘Debate Summary introduce the Alternative Vote for UK General Elections?’ not ‘Should we have fair votes?’). Use the search function on Debate Summary's home page to see if there's already a page on your chosen topic.  If there isn't, click the "...or create a new issue" option at the bottom of the search results.
 
 **Step 3:**
 
@@ -103,7 +169,7 @@ Please fill in tags. This is what enables the site to generate the news feed dow
 ## Some thoughts on style
 
 **Tone:**  Debate Summary is predicated on the idea that policy-making involves making trade-offs and balancing priorities, and that people may legitimately come to different conclusions from shared evidence. The tone of contributions, therefore, should be neutral rather than polemical. Don’t try to be an ‘advocate’ for the evidence, just write descriptive sentences which state clearly what the evidence being linked to demonstrates. It isn’t your job to put the best possible ‘gloss’ on it or inspire people to read it with moving rhetoric. Avoid all gossip, innuendo, sarcasm and, of course, libel and defamation.
-**Length:** The average reader should be able to understand the main points in 10 minutes. The linked evidence of each page would, of course, take much longer to read, watch or listen to, but the page itself should be accessible to and useful for somebody putting together a news story under time pressure.
+**Length:** The average reader should be able to understand the main points in 10 minutes. The linked evidence of each page would, of course, take much longer to read, watch or listen to, but the page itself should be accessible to and useful for somemarkdown putting together a news story under time pressure.
 **Shelf life:** Please review your content to ensure it won’t date easily. For example, instead of ‘this year’ please say ‘in 2014’.
 **Clarity:** Debate Summary is aimed at intelligent general readers. Please, therefore, take care to avoid jargon and acronyms. Write in clear British English as concisely as possible.
 
@@ -151,7 +217,7 @@ EOF
 
 
 
-  {title: 'House Rules', slug: 'house-rules', body: <<-EOF
+  {title: 'House Rules', permalink: 'house-rules', markdown: <<-EOF
 ## House Rules
 
 Debate Summary is an open environment where everyone is invited to improve our record of public debates. To ensure the quality of information on Debate Summary is kept high we have a few House Rules which we ask you to respect.
@@ -210,7 +276,7 @@ EOF
 
 
 
-  {title: 'Legal', slug: 'legal', body: <<-EOF
+  {title: 'Legal', permalink: 'legal', markdown: <<-EOF
 ##  Debate Summary Terms of Use
 
 Debate Summary.org is run by the Policy Wiki Educational Foundation. The Foundation is UK-based not-for-profit whose mission is to improve the understanding of public policy debates, the quality of public policy-making and democratic scrutiny. Companies House Reg: 08098338. &nbsp;
@@ -455,7 +521,7 @@ EOF
 
 
 
-  {title: 'Contact', slug: 'contact', body: <<-EOF
+  {title: 'Contact', permalink: 'contact', markdown: <<-EOF
 ##Contact
 We'd love to hear how we can make ShouldWe better.
 
@@ -466,7 +532,7 @@ EOF
 },
 
 
-  {title: 'Help us', slug: 'help-us', body: <<-EOF
+  {title: 'Help us', permalink: 'help-us', markdown: <<-EOF
 ## Help us
 
 As a crowd-sourced platform, ShouldWe is only as good as the help we get from people who join our movement for evidence-based policy. We’re so happy you’d like to be part of it! It’s really easy to get involved. The main ways we’ve thought of are below, but if there’s something we’ve missed let us know at [hello@shouldwe.org](mailto:hello@shouldwe.org).
