@@ -230,9 +230,24 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
-  config.omniauth :facebook, ENV['FACEBOOK_API_KEY'], ENV['FACEBOOK_API_SECRET']
-  config.omniauth :twitter, ENV['TWITTER_API_KEY'], ENV['TWITTER_API_SECRET']
-  config.omniauth :linkedin, ENV['LINKEDIN_API_KEY'], ENV['LINKEDIN_API_SECRET'], :scope => 'r_basicprofile r_emailaddress', :fields => ["id", "email-address", "first-name", "last-name",  "picture-url", "public-profile-url"]
+  if ENV['FIXIE_URL']
+    client_options = {
+      connection_opts: {
+        proxy: "http://127.0.0.1:3128"
+      }
+    }
+  end
+  config.omniauth :facebook, ENV['FACEBOOK_API_KEY'], ENV['FACEBOOK_API_SECRET'], {
+    client_options: client_options
+  }
+  config.omniauth :twitter, ENV['TWITTER_API_KEY'], ENV['TWITTER_API_SECRET'], {
+    client_options: client_options
+  }
+  config.omniauth :linkedin, ENV['LINKEDIN_API_KEY'], ENV['LINKEDIN_API_SECRET'], {
+    scope: 'r_basicprofile r_emailaddress',
+    fields: ["id", "email-address", "first-name", "last-name",  "picture-url", "public-profile-url"],
+    client_options: client_options
+  }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
