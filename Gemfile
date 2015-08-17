@@ -20,7 +20,7 @@
 source 'https://rubygems.org'
 # ruby '2.1.2'
 
-gem 'rails', '3.2.19' # 3.2.18 newer
+gem 'rails', '3.2.22' # 3.2.18 newer
 gem 'rails_autolink'
 gem 'rabl-rails'
 
@@ -32,6 +32,7 @@ gem 'liquid'
 
 gem 'json'
 gem 'passenger'
+# gem 'thin'
 
 gem 'dalli'
 

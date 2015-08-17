@@ -64,7 +64,7 @@ module ApplicationHelper
   def full_url(url)
     host = ActionMailer::Base.asset_host
     if not host and ActionMailer::Base.default_url_options.any?
-      host = ActionMailer::Base.default_url_options[:protocol] || 'http://'
+      host = Rails.application.config.force_ssl ? 'https://' : 'http://'
       host += ActionMailer::Base.default_url_options[:host]
     end
 

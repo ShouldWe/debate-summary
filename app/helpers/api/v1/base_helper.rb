@@ -18,14 +18,4 @@
 # along with Debate Summary.  If not, see <http://www.gnu.org/licenses/>.
 #
 module Api::V1::BaseHelper
-  def full_url(url)
-    host = ActionMailer::Base.asset_host
-    if not host and ActionMailer::Base.default_url_options.any?
-      host = ActionMailer::Base.default_url_options[:protocol] || 'http'
-      host += '://'
-      host += ActionMailer::Base.default_url_options[:host]
-    end
-
-    return URI.join(host, url).to_s if host
-  end
 end

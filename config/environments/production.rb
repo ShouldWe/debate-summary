@@ -88,6 +88,7 @@ DebateSummary::Application.configure do
 
   config.action_mailer.default_url_options = {
     protocol: 'https',
+    only_path: false,
     host: 'debate-summary.herokuapp.com'
   }
 
