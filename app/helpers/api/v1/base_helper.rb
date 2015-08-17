@@ -21,7 +21,8 @@ module Api::V1::BaseHelper
   def full_url(url)
     host = ActionMailer::Base.asset_host
     if not host and ActionMailer::Base.default_url_options.any?
-      host = ActionMailer::Base.default_url_options[:protocol] || 'http://'
+      host = ActionMailer::Base.default_url_options[:protocol] +  || 'http'
+      host += '://'
       host += ActionMailer::Base.default_url_options[:host]
     end
 

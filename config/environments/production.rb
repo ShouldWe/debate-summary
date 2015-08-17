@@ -86,7 +86,10 @@ DebateSummary::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  config.action_mailer.default_url_options = { :host => 'debate-summary.herokuapp.com' }
+  config.action_mailer.default_url_options = {
+    protocol: 'https',
+    host: 'debate-summary.herokuapp.com'
+  }
 
   config.action_mailer.smtp_settings = {
     :address   => ENV['SMTP_ADDRESS'],
