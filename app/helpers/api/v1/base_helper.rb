@@ -18,4 +18,5 @@
 # along with Debate Summary.  If not, see <http://www.gnu.org/licenses/>.
 #
 module Api::V1::BaseHelper
+  include ApplicationHelper
 end
