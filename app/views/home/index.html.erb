@@ -22,7 +22,7 @@
       </div>
     <% end %>
     <div class="homepage-help-us">
-      <%= simple_format(markdown(t(:help, scope: 'home'))) %>
+      <%= simple_format(markdown(@help_us.render)) %>
     </div>
     <span class="speach-bubbles"></span>
     <div class="home-logo"></div>

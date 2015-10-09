@@ -28,6 +28,7 @@
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 Page.destroy_all
 Template.destroy_all
+Contextual.destroy_all
 Template.create([
   { title: 'Welcome Email', slug: 'welcome-email', content: <<-EOF
 <h1>Welcome to Debate Summary, {{user.name}}</h1>
@@ -81,6 +82,11 @@ EOF
 <p>Dear {{user.first_name}},</p>
 
 <p>You have been subscribed to notifications on activity for the issue {{issue.title}} that you contributed to. If you would like to change your preferences about how often we notify you of new activity, or turn them off altogether, please go to {{user.account_link}}.</p>
+EOF
+},
+  { title: 'Help Us', slug: 'help-us', content: <<-EOF
+Help us spread the word about Debate Summary
+[find out how](/help-us)
 EOF
 }
 ])
@@ -520,7 +526,7 @@ EOF
 
 ])
 
-Contexual.create([
+Contextual.create([
   { title: 'page title', field_description: 'Enter a title for this page - use a question beginning "Should" and ending with a question mark', think_about: 'Keep the question short and unambiguous' },
   { title: 'context', field_description: 'Use this section to explain the background to the topic - what it\'s about and why it is important.', think_about: 'Text without a source of evidence will appear in red.  Add a source by selecting some text and clicking "Add source", then enter the URL of the source and click "OK".' },
   { title: 'for title', field_description: 'Summarise an argument in a single sentence of less than ten words","Three to five words is usually best', think_about: '' },

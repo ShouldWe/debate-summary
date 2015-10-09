@@ -20,7 +20,7 @@
 class HomeController < ApplicationController
   # Home page code for trending topics and tags
   layout 'home'
-  HomePageDirectoryTags = [
+  HOME_PAGE_DIRECTORY_TAGS = [
     'Constitution & Government',
     'Culture',
     'Defence',
@@ -32,27 +32,34 @@ class HomeController < ApplicationController
     'Local Government & the Regions',
     'Social Issues & Justice',
     'Transport',
-    'Miscellaneous',
+    'Miscellaneous'
   ]
+
   def index
+    @help_us = Template.find('help-us').liquid
     @trending_topics = Issue.trending
-    # TODO - move this to Tag class, also directory
     @trending_tags = Issue.trending_tags
+    @left_entries = sliced_entries[0]
+    @right_entries = sliced_entries[1]
+  end
+
+  def show
+    @page = Page.find_by_permalink!(params[:id])
+    @content = Kramdown::Document.new(@page.markdown).to_html
+    render template: 'home/homeother', layout: 'layouts/application'
+  end
+
+  private
+
+  def sliced_entries
     directory = []
-    HomePageDirectoryTags.each do |tag_string|
-      directory << Struct.new(:tags,:issues,:tag_count).new.tap do |dir_entry|
+    HOME_PAGE_DIRECTORY_TAGS.each do |tag_string|
+      directory << Struct.new(:tags, :issues, :tag_count).new.tap do |dir_entry|
         dir_entry.tags = tag_string
         dir_entry.issues = Issue.by_tag_string tag_string
         dir_entry.tag_count = Issue.count_by_tag_string(tag_string)
       end
     end
-    sliced_entries = directory.each_slice(directory.length / 2).to_a
-    @left_entries = sliced_entries[0]
-    @right_entries = sliced_entries[1]
-  end
-  def show
-    @page = Page.find_by_permalink!(params[:id])
-    @content = Kramdown::Document.new(@page.markdown).to_html
-    render template: "home/homeother", layout: 'layouts/application'
+    directory.each_slice(directory.length / 2).to_a
   end
 end
