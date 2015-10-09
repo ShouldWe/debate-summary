@@ -189,11 +189,13 @@
       </ul>
     </div>
 
+    <% if BingNews::ACCOUNT_KEY %>
     <div class="box">
       <div class="sidebar-header">Elsewhere online</div>
         <ul class="links-list" id="newsList" data-id="<%= @issue.id %>">
         </ul>
     </div>
+    <% end %>
 
     <div class="box">
       <div class="sidebar-header"><%= t('issues.sidebar.headings.tags') %></div>
