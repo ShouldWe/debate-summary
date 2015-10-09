@@ -17,6 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Debate Summary.  If not, see <http://www.gnu.org/licenses/>.
 #
+# rubocop:disable Metrics/LineLength
+#
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -27,7 +29,7 @@
 Page.destroy_all
 Template.destroy_all
 Template.create([
-  {title: 'Welcome Email', slug: 'welcome-email', content: <<-EOF
+  { title: 'Welcome Email', slug: 'welcome-email', content: <<-EOF
 <h1>Welcome to Debate Summary, {{user.name}}</h1>
 <p>
 You have successfully signed up to ShouldWe.
@@ -39,34 +41,26 @@ To login to the site, just follow this link: {{url}}.
   EOF
 },
 
-
-{title: 'Expert Welcome Email', slug: 'expert-welcome-email', content: <<-EOF
+  { title: 'Expert Welcome Email', slug: 'expert-welcome-email', content: <<-EOF
 <h1>You've been appointed as an Expert</h1>
 <p>You've been made an expert for the Issue "{{issue.title}}", this means you can do the following:</p>
 <p>You can view the issue at this link: <a href="{{issue.url}}">{{issue.title}}</a>.</p>
 EOF
 },
 
-
-
-
-
-{title: 'Endorse Email', slug: 'endorse-email', content: <<-EOF
+  { title: 'Endorse Email', slug: 'endorse-email', content: <<-EOF
 <h1>You've been invited to become an endorsed member of Debate Summary</h1>
 <p>You've been invited to become an endorsed member "{{user.name}}", this means you have been approved to become have editor abilities.</p>
 <p>You should <a href="{{url}}">sign up</a> today.</p>
 EOF
 },
 
-
-{title: 'Unendorsed Email', slug: 'unendorse-email', content: <<-EOF
+  { title: 'Unendorsed Email', slug: 'unendorse-email', content: <<-EOF
 Unendorsed Email body
 EOF
 },
 
-
-
-{title: 'Alleged abuser decision made email', slug: 'alleged-abuser-decision-made-email', content: <<-EOF
+  { title: 'Alleged abuser decision made email', slug: 'alleged-abuser-decision-made-email', content: <<-EOF
 <p>Dear {{user.name}}</p>
 <p>There has been a complaint that you broke the house rules when you edited {{ issue_url }}</p>
 <p>The rules broken were:</p>
@@ -76,24 +70,23 @@ EOF
 EOF
 },
 
-
-{title: 'Abuse Reported', slug: 'abuse-reported', content: <<-EOF
+  { title: 'Abuse Reported', slug: 'abuse-reported', content: <<-EOF
 <p>
 There is a new allegation of abuse. Please see {{rule_break_report_votes_url}}
 </p>
 EOF
 },
 
-
-{title: 'Notification Subscription Created', slug: 'notification-subscription-created', content: <<-EOF
+  { title: 'Notification Subscription Created', slug: 'notification-subscription-created', content: <<-EOF
 <p>Dear {{user.first_name}},</p>
 
 <p>You have been subscribed to notifications on activity for the issue {{issue.title}} that you contributed to. If you would like to change your preferences about how often we notify you of new activity, or turn them off altogether, please go to {{user.account_link}}.</p>
 EOF
 }
 ])
+
 Page.create([
-  {title: 'About', permalink: 'about', markdown: <<-EOF
+  { title: 'About', permalink: 'about', markdown: <<-EOF
 ## About us
 
 Debate Summary is a open-source version of ShouldWe. A non-partisan, crowd-sourced online guide to public policy debates and evidence.
@@ -120,18 +113,7 @@ We would not be where we are today without the thoughtful contributions and hard
 We're hugely grateful to you all!
 EOF
 },
-
-
-
-
-
-
-
-
-
-
-
-  {title: 'Style Guide', permalink: 'style-guide', markdown: <<-EOF
+  { title: 'Style Guide', permalink: 'style-guide', markdown: <<-EOF
 ## Creating a Debate Summary page
 
 Thanks so much for creating or editing a Debate Summary page. This should tell you everything you need to know, but if anything isn’t clear please let us know at hello@Debate Summary.org.
@@ -214,10 +196,7 @@ We are thrilled by your interest in Debate Summary and hugely appreciate your ea
 EOF
 },
 
-
-
-
-  {title: 'House Rules', permalink: 'house-rules', markdown: <<-EOF
+  { title: 'House Rules', permalink: 'house-rules', markdown: <<-EOF
 ## House Rules
 
 Debate Summary is an open environment where everyone is invited to improve our record of public debates. To ensure the quality of information on Debate Summary is kept high we have a few House Rules which we ask you to respect.
@@ -271,13 +250,8 @@ You must not:
 EOF
 },
 
-
-
-
-
-
-  {title: 'Legal', permalink: 'legal', markdown: <<-EOF
-##  Debate Summary Terms of Use
+  { title: 'Legal', permalink: 'legal', markdown: <<-EOF
+## Debate Summary Terms of Use
 
 Debate Summary.org is run by the Policy Wiki Educational Foundation. The Foundation is UK-based not-for-profit whose mission is to improve the understanding of public policy debates, the quality of public policy-making and democratic scrutiny. Companies House Reg: 08098338. &nbsp;
 
@@ -513,15 +487,7 @@ Please submit any questions you have about these Terms of Use or any problems co
 EOF
 },
 
-
-
-
-
-
-
-
-
-  {title: 'Contact', permalink: 'contact', markdown: <<-EOF
+  { title: 'Contact', permalink: 'contact', markdown: <<-EOF
 ##Contact
 We'd love to hear how we can make ShouldWe better.
 
@@ -531,8 +497,7 @@ We look forward to hearing from you!
 EOF
 },
 
-
-  {title: 'Help us', permalink: 'help-us', markdown: <<-EOF
+  { title: 'Help us', permalink: 'help-us', markdown: <<-EOF
 ## Help us
 
 As a crowd-sourced platform, ShouldWe is only as good as the help we get from people who join our movement for evidence-based policy. We’re so happy you’d like to be part of it! It’s really easy to get involved. The main ways we’ve thought of are below, but if there’s something we’ve missed let us know at [hello@shouldwe.org](mailto:hello@shouldwe.org).
@@ -553,4 +518,20 @@ As a crowd-sourced platform, ShouldWe is only as good as the help we get from pe
 EOF
 }
 
+])
+
+Contexual.create([
+  { title: 'page title', field_description: 'Enter a title for this page - use a question beginning "Should" and ending with a question mark', think_about: 'Keep the question short and unambiguous' },
+  { title: 'context', field_description: 'Use this section to explain the background to the topic - what it\'s about and why it is important.', think_about: 'Text without a source of evidence will appear in red.  Add a source by selecting some text and clicking "Add source", then enter the URL of the source and click "OK".' },
+  { title: 'for title', field_description: 'Summarise an argument in a single sentence of less than ten words","Three to five words is usually best', think_about: '' },
+  { title: 'for body', field_description: 'Enter the main points behind the argument.  You can use multiple sentences but the total word count must not exceed 200 words. You should only enter arguments which have been made elsewhere.', think_about: 'About 100 words is usually best.  Click "New argument" to create another argument.' },
+  { title: 'against title', field_description: 'Summarise an argument in a single sentence of less than ten words","Three to five words is usually best', think_about: '' },
+  { title: 'against body', field_description: 'Enter the main points behind the argument. You can use multiple sentences but the total word count must not exceed 200 words. You should only enter arguments which have been made elsewhere.', think_about: 'About 100 words is usually best. Click "New argument" to create another argument.' },
+  { title: 'alternative title', field_description: 'Sum up the perspective, trying to capture the essence of it in a few words.', placeholder: 'Insert argument heading' },
+  { title: 'alternative body', field_description: 'Give a brief description of arguments which don\'t fit into the mainstream "yes" or "no" perspectives but which are still relevant.', think_about: 'Maybe use this section to document some "way out there ideas?' },
+  { title: 'relevant title', field_description: 'Add a title to additional, relevant data to ensure people can see quickly what it contains.', placeholder: 'Insert argument heading' },
+  { title: 'relevant body', field_description: 'This section can be used for pointing to relevant data that might not be directly cited in the main arguments.', think_about: 'If two different evidence sources support an argument, why not list them here?' },
+  { title: 'tags', field_description: 'Tags help people find content by summing up its context in a few words or short phrases.  Note, you do not need to type a "#" symbol for your tags: just use normal text.', think_about: 'What are the big themes of this issue which people might search for?', placeholder: 'Some, tags, separated, by, commas...' },
+  { title: 'on search', field_description: 'Search for topics which may be of interest to readers of this page', think_about: 'relevance is important: try not to add more than three or four links' },
+  { title: 'default help', field_description: 'As you fill out the form, this sidebar will explain how to fill in each box.', think_about: ' how to keep your content brief and to the point.', field_title: 'Help' }
 ])
