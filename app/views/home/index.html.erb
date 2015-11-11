@@ -27,7 +27,7 @@
     <span class="speach-bubbles"></span>
     <div class="home-logo"></div>
 
-    <%=simple_format(t(:tagline, scope: 'meta'), class: 'lead') %>
+    <%= auto_link(simple_format(t(:tagline, scope: 'meta'), class: 'lead')) %>
 
     <ul class="points">
       <li><%= markdown(t(:search, scope: 'home.points')) %></li>
@@ -41,7 +41,7 @@
         <div class="form-group">
           <label>Search for:</label>
           <span class="form-control-wrapper">
-            <input type="search" name="search" placeholder="Should the UK leave the European Union" autocomplete="off" id="searchHome">
+            <input type="search" name="search" placeholder="<%= @trending_topics.first.try(:title) || "<Insert example search term>" %>" autocomplete="off" id="searchHome">
             <span class="fa fa-search"></span>
             <div id="homeSearchDropdown" class="search-results"></div>
           </span>
@@ -51,7 +51,7 @@
     </div>
 
     <div class="join-mailing-list">
-      <%= link_to(t(:mailing_list, scope: 'home'), '/about') %>
+      <%= link_to_if(false, t(:mailing_list, scope: 'home'), '/about') %>
     </div>
 
 
