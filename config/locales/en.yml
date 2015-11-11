@@ -23,7 +23,7 @@
 en:
   meta:
     title: "Debate Summary"
-    tagline: 'Debate Summary is a crowdsourced guide to the big policy questions of the day. Every sentence on a Debate Summary page is linked to evidence, ensuring you get perspectives from all sides, in one place. '
+    tagline: "Debate Summary helps you build crowdsourced guides to the evidence behind any hotly debated issue- whether it’s politics, science, culture or anything else. Every sentence on a DebateSummary page has to be hyperlinked to a source, or the page will not upload successfully. This is designed to promote evidence-based debate on whatever subject you and your users choose.\n Originally developed to support policy debate website www.shouldwe.org, the DebateSummary platform is now free to copy and modify for any issue people want to debate online."
     keywords: 'public policy, debate, evidence'
     default_title: 'Debate Summary - From all sides, in one place'
     description: "Debate Summary is a new online guide to the causes and consequences of the policies which affect our lives."
