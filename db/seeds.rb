@@ -88,7 +88,8 @@ EOF
 Help us spread the word about Debate Summary
 [find out how](/help-us)
 EOF
-}
+},
+  { title: 'Homepage Featured Tags', slug: 'homepage-featured-tags', content: 'Tag_1, Tag_2, Tag_3, Tag_4' }
 ])
 
 Page.create([
@@ -523,7 +524,6 @@ As a crowd-sourced platform, ShouldWe is only as good as the help we get from pe
 **THANK YOU! We couldn’t have created ShouldWe without our creative crowd. We’re delighted you are now part of it.**
 EOF
 }
-
 ])
 
 Contextual.create([

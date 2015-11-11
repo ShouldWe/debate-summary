@@ -20,20 +20,7 @@
 class HomeController < ApplicationController
   # Home page code for trending topics and tags
   layout 'home'
-  HOME_PAGE_DIRECTORY_TAGS = [
-    'Constitution & Government',
-    'Culture',
-    'Defence',
-    'Economy & Business',
-    'Education & Skills',
-    'Energy & Environment',
-    'Foreign Affairs',
-    'Health',
-    'Local Government & the Regions',
-    'Social Issues & Justice',
-    'Transport',
-    'Miscellaneous'
-  ]
+  FEATURED_TAGS = Template.find('homepage-featured-tags').content.split(/,\s*/)
 
   def index
     @help_us = Template.find('help-us').liquid
@@ -53,7 +40,7 @@ class HomeController < ApplicationController
 
   def sliced_entries
     directory = []
-    HOME_PAGE_DIRECTORY_TAGS.each do |tag_string|
+    FEATURED_TAGS.each do |tag_string|
       directory << Struct.new(:tags, :issues, :tag_count).new.tap do |dir_entry|
         dir_entry.tags = tag_string
         dir_entry.issues = Issue.by_tag_string tag_string
