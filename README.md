@@ -2,7 +2,7 @@
 
 # Debate Summary
 
-Debate Summary is open-sourced version of [ShouldWe](http://www.shouldwe.org), free to copy and modify (see [LICENSE](./LICENSE)).
+DebateSummary is an open-source platform for debating issues. Free to copy and modify (see [LICENSE](./LICENSE)).
 
 ## Prerequisites
 
